@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/VictorAnizar/Proyecto-Santander-Fase-2#readme",
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "babel-loader": "^8.2.2",
     "css-loader": "^6.2.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
