@@ -17,8 +17,15 @@ module.exports = {
     module:{
         rules:[
             {
-                test: /\.css$/,//cuando pasa la prueba
-                use: ['style-loader', 'css-loader']//usa estos loaders
+                test: /\.s[ac]ss$/i,//cuando pasa la prueba
+                use: [
+                    // Creates `style` nodes from JS strings
+                    "style-loader",
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader",
+                  ]//usa estos loaders
             },
             {
                 test: /\.m?js$/,
