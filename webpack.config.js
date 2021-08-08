@@ -39,15 +39,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|gif)$/i,
-                use: [
-                  {
-                    loader: 'url-loader',
-                    options: {
-                      limit: 8192,
-                    }
-                  },
-                ],
-               type: 'javascript/auto'
+                use: [ "file-loader" ]
             }
         ]
     },
