@@ -10,6 +10,14 @@ body{
         text-align: center;
         font-family: 'Courier New', Courier, monospace;
     }
+    
+    figure{
+        text-align: center;
+        .template-image {
+            width: 90%;
+
+        }
+    }
 }
 
 
