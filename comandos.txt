@@ -1,0 +1,5 @@
+git branch
+git branch -a
+git checkout experimental
+git checkout -b otrarama
+git push -u origin experimental         subir rama
