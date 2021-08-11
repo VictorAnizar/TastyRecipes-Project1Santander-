@@ -1,3 +1,10 @@
+//Animaciones
+@import './animations.scss';
+//Fuentes
+@import './fuentes.scss';
+
+
+
 *{
     padding: 0;
     margin: 0;
@@ -6,6 +13,7 @@
 }
 body{
     background-color: #fae6b1;
+    width: 100%;
     #header{
         background-color: #31525b;
         display: flex;
@@ -14,16 +22,25 @@ body{
         width: 100%;
         height: 90px;
         align-items: center;
-        justify-content:space-evenly ;
+        justify-content:space-between ;
         padding-left: 50px;
         padding-right: 50px;
         #logo{
-            
-            background-color: brown;
+            font-family: "WebSymbolsRegular";
+            font-size: 50px;
+            color: white;
             height: 90%;
             flex-basis: 15%;
             border-radius: 50px;
-            
+            transition: all 300ms;
+            .gear{
+                display: block;
+                float: left;
+                animation-name: rotate-gear ;
+                animation-duration: 2s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
         }
         
             #menu{
@@ -43,14 +60,95 @@ body{
                         text-decoration: none;
                         display: block;
                         border-radius: 10px;
+                        font-size: 20px;
                         transition: all 300ms;
                     }
                     a:hover{
-                        transform: scale(1.1);
+                        transform: scale(1.2);
+                        box-shadow: 0px 0px 5px black;
                     }
             }
         }   
     }
-}
+    #main{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 95%;
+        align-items: center;
+        margin: 10px 50px;
+        #section_buscar{
+            flex-basis: 100%;
+            margin: 25px auto;
+            h1{
+                font-size: 50px;
+            }
+            form{
+                display: flex;
+                flex-wrap: wrap;
+                width:40%;
 
+                label{
+                    flex-basis: 1%;
+                    font-family: "WebSymbolsRegular";
+                    margin: 7px;
+                    position:absolute;
+                    left: 60px;
+                }
+                input{
+                    flex-basis: 95%;
+                    margin: 1px;
+                    border: none;
+                    border-radius: 20px;
+                    height: 40px;
+                    padding-left: 40px;
+                    padding-bottom: 5px;
+                    font-size: 20px;
+                    transition: all 300ms;
+                }
+                input:focus{
+                    border: none;
+                    
+                    
+                    outline: none;
+                    box-shadow: 0px 0px 5px black;
+                }
+                button{
+                    flex-basis: 95%;
+                    margin-top: 10px;
+                    border-radius: 15px;
+                    background-color: #31525b;
+                    border: none;
+                    transition: all 300ms;
+                }
+                button:hover{
+                    transform: scale(1.05);
+                    box-shadow: 1px 1px 20px white ;
+                }
+            }
+        }
+    }
+    #footer{
+        font-family: "WebSymbolsRegular";
+        background-color: #31525b;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+        height: 90px;
+        align-items: center;
+        justify-content:flex-end ;
+        padding-left: 50px;
+        padding-right: 50px;
+        position: fixed; 
+        bottom: 0;
+        font-size: 50px;
+        div{
+            margin-left: 5px;
+            margin-right: 5px;
+            display: block;
+            color: white;
+        }
+    }
+}
 
