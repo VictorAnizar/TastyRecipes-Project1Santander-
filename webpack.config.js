@@ -6,7 +6,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),//construye esta carpeta 
         filename: 'bundle.js',//arcchivo empaquetado
-        assetModuleFilename: 'images/[hash][ext][query]'
+        assetModuleFilename: 'assets/[hash][ext][query]'
     }, 
     plugins: [ //se usa un plugin para leer html
         new HtmlWebpackPlugin({

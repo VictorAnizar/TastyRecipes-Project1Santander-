@@ -4,10 +4,23 @@ import "../css/styles.scss";
 window.addEventListener('load', function () {
 
     //Se van a listar 8 filas de recetas de comida
-    for (let index = 1; index <= 8; index++) {
-        crearFilaRecetas();
+    for (let index = 1; index <= 2; index++) {
+         console.log(crearFilaRecetas());
     }
+
+    let card=document.getElementsByClassName("card");
+    // card.addEventListener('click', function(){
+         console.log(card);
+    //     console.log("tarjeta seleccionada");
+    // });
 });
+
+function getCategories(){
+    return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+    .then(
+        (data) => data.json()
+    );
+}
 
 //funcion para hacer fetch a la API
 function getRecetaRandom() {
@@ -21,7 +34,7 @@ function getRecetaRandom() {
 function crearFilaRecetas() {
     const div_row = document.createElement("div");
     div_row.classList.add("row");
-
+    const card=[];
     for (let i = 0; i < 5; i++) {
 
         getRecetaRandom()
@@ -31,6 +44,7 @@ function crearFilaRecetas() {
                 }
             )
             .then(function (div_card) {
+                card.push(div_card);
                 //Creamos un nuevo div que funciona como celda
                 const div_col = document.createElement("div");
                 div_col.classList.add("col", "container-box-padding");
@@ -39,14 +53,15 @@ function crearFilaRecetas() {
                 //Añadimos la nueva celda a la fila
                 div_row.appendChild(div_col);
                 //Enviamos la fila
-                return div_row;
-            }).then(function (div_rowF) {
+                // return div_row;
+            //}).then(function (div_rowF) {
                 //Esperamos a que la fila se llene para añadirla al documento
-                if (i == 4)
+                
                     document.querySelector("#section_lista").appendChild(div_row);
 
             });
     }
+    return card;
 }
 
 
@@ -94,10 +109,10 @@ function creaTarjetaReceta(data) {
     let a = document.createElement("a");
     a.append("Ver receta ");
     //se agregan las clases al boton
-    a.classList.add("btn");
-    a.classList.add("btn-primary");
+    //a.classList.add("btn");
+    //a.classList.add("btn-primary");
     //se agrega el parrafo como hijo del div_body
-    div_body.appendChild(a);
+    //div_body.appendChild(a);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
     
