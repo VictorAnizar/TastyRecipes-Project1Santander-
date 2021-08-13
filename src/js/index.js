@@ -100,5 +100,6 @@ function creaTarjetaReceta(data) {
     div_body.appendChild(a);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
+    
     return div_card;
 }
