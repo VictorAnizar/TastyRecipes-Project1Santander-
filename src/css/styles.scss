@@ -133,14 +133,20 @@ body{
             justify-content: space-between;
             flex-direction: row;
             flex-wrap: wrap;
+            margin-bottom: 10%;
             .card{
                 flex-basis: 12%;
-                max-height: 200px;
+                max-height: 500px;
                 margin-top:50px ;
                 width: 100%;
                 transition: all 300ms;
                 img{
                     width: 100%;
+                }
+                .card-body{
+                    .card-title{
+                        min-height: 50px;
+                    }
                 }
             }
             .card:hover{
