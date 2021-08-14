@@ -1,4 +1,4 @@
-import { get } from "jquery";
+import { event, get } from "jquery";
 import "../css/styles.scss";
 
 window.addEventListener('load', function () {
@@ -30,7 +30,7 @@ window.addEventListener('load', function () {
             });
         }
 
-    }, 2000);
+    }, 6000);
 
     //si se le da al boton cerrar
     document.querySelector(".close").addEventListener('click', function () {
@@ -42,7 +42,51 @@ window.addEventListener('load', function () {
         modal.style.display = "none";
         document.querySelector(".modal-content").style.display="none";
     });
+    //escucha del boton receta Aleatoria
+    document.querySelector("#btn_random").addEventListener('click', function (evt) {
+        evt.preventDefault();
+        recetaSorpresa();
+    });
+    //Cargamos la primer receta Sorpresa
+    recetaSorpresa();
 });
+
+//Generar receta Aleatoria
+function recetaSorpresa() {
+    
+    getRecetaRandom()
+    .then(
+        data => {
+            return creaTarjetaReceta(data);
+        }
+    )
+    .then(function (div_card) {
+        const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
+        recetaSorpresaAleatoria.innerHTML='';
+        recetaSorpresaAleatoria.appendChild(div_card);
+    });
+
+}
+
+function asignarModal() {
+    //seleccionamos el conjunto de tarjetas
+    let tarjetas_html = document.getElementsByClassName("card");
+    console.log(tarjetas_html);
+    //para cada una de las tarjetas, veremos si se le da click en alguna
+    for (let index = 0; index < tarjetas_html.length; index++) {
+
+        //si se le da click
+
+        tarjetas_html[index].addEventListener('click', function () {
+            console.log("click en card" + tarjetas_html[index].innerText);
+            //aparece un modal
+            modal.style.display = "block";
+            document.querySelector(".modal-content").style.display="block";
+            
+        });
+    }
+
+}
 
 function getCategories() {
     return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
@@ -151,6 +195,12 @@ function creaTarjetaReceta(data) {
     div_body.appendChild(span);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
-
+    div_card.addEventListener('click', function () {
+        console.log("click en card" + div_card.innerText);
+        //aparece un modal
+        modal.style.display = "block";
+        document.querySelector(".modal-content").style.display="block";
+        
+    });
     return div_card;
 }

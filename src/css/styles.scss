@@ -29,6 +29,7 @@ body{
         justify-content:space-between ;
         padding-left: 50px;
         padding-right: 50px;
+        z-index: 1;
         #logo{
             border-radius: 60px;
             padding: 5px;
@@ -75,11 +76,11 @@ body{
         align-items: center;
         margin: 10px 50px;
         
-        margin-top: 100px;
+        margin-top: 50px;
         #section_buscar{
             flex-basis: 100%;
             margin: 25px auto;
-            height: 600px;
+            height: 700px;
             .baner-imagen{
                 z-index: -1;
                 margin-bottom: -50px;
@@ -102,7 +103,7 @@ body{
                     font-family: "WebSymbolsRegular";
                     margin: 7px;
                     position:absolute;
-                    left: 60px;
+                    left:85px;
                 }
                 input{
                     flex-basis: 95%;
@@ -135,6 +136,13 @@ body{
                     box-shadow: 1px 1px 20px white ;
                 }
             }
+            .receta-sorpresa-container{
+                width: 40%;
+                
+                .receta-sorpresa{
+                    max-width: 300px;
+                }
+            }
            
         }
         #section_lista{
@@ -145,110 +153,112 @@ body{
             flex-direction: row;
             flex-wrap: wrap;
             margin-bottom: 3%;
-            
-            .card{
-                flex-basis: 12%;
-                max-height: 500px;
-                margin-top:50px ;
+        }
+
+        
+        .card{
+            flex-basis: 12%;
+            max-height: 500px;
+            margin-top:50px ;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 300ms;
+            img{
                 width: 100%;
-                cursor: pointer;
                 border-radius: 10px;
-                transition: all 300ms;
-                img{
+            }
+            .card-body{
+                text-align: center;
+                .card-title{
+                    min-height: 50px;   
+                }
+                .card-text{
+                    opacity: 0.5;
+                }
+                span{
+                    display: none;
                     width: 100%;
-                    border-radius: 10px;
-                }
-                .card-body{
-                    text-align: center;
-                    .card-title{
-                        min-height: 50px;   
-                    }
-                    .card-text{
-                        opacity: 0.5;
-                    }
-                    span{
-                        display: none;
-                        width: 100%;
-                        transition: all 300ms;
-                    }
-                }
-                .btn {
-                    background-color: $color-principal;
+                    transition: all 300ms;
                 }
             }
-            .card:hover{
-                .card-body{
-                    span{
-                        background-color: black;
-                        color: white;
-                        display: block;
-                        bottom: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 10px;
-                        position: absolute;
-                        transition: all 300ms;
-                        opacity: 0.2;
-                    }
-                }
-                margin: 0;
-                transform: scale(1.1);
-                z-index: 2;
-                box-shadow: 0px 0px 100px black;
-            }
-            #modal {
-                display: none;
-                position: fixed;
-                z-index: 3;
-                padding-top: 100px;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                overflow: auto;
-                background-color: rgb(0, 0, 0);
-                background-color: rgba(0, 0, 0, 0.9);
-                cursor: pointer;
-            }
-            
-            
-            .modal-content {
-                position: fixed;
-                cursor:initial;
-                background-color: white;
-                z-index: 4;
-                margin: auto;
-                display: block;
-                width: 80%;
-
-                height: 88%; 
-                display: none;
-                top: 6%;
-                left: 10%;
-                animation-name: modal-open ;
-                animation-duration: 300ms;
-                animation-timing-function: linear;
-            } 
-
-            
-            .close {
-                position: absolute;
-                top: 15px;
-                right: 35px;
-                color: #f1f1f1;
-                font-size: 40px;
-                font-weight: bold;
-                transition: 0.3s;
-            }
-            
-            .close:hover,
-            .close:focus {
-                color: #bbb;
-                text-decoration: none;
-                cursor: pointer;
+            .btn {
+                background-color: $color-principal;
             }
         }
+        .card:hover{
+            .card-body{
+                span{
+                    background-color: black;
+                    color: white;
+                    display: block;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                    position: absolute;
+                    transition: all 300ms;
+                    opacity: 0.2;
+                }
+            }
+            margin: 0;
+            transform: scale(1.1);
+            z-index: 2;
+            box-shadow: 0px 0px 100px black;
+        }
+        #modal {
+            display: none;
+            position: fixed;
+            z-index: 3;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+        
+        
+        .modal-content {
+            position: fixed;
+            cursor:initial;
+            background-color: white;
+            z-index: 4;
+            margin: auto;
+            display: block;
+            width: 80%;
+
+            height: 88%; 
+            display: none;
+            top: 6%;
+            left: 10%;
+            animation-name: modal-open ;
+            animation-duration: 300ms;
+            animation-timing-function: linear;
+        } 
+
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
 
     }
     #footer{
