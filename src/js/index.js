@@ -4,7 +4,7 @@ import "../css/styles.scss";
 window.addEventListener('load', function () {
 
     //Se van a listar 8 filas de recetas de comida
-    for (let index = 1; index <= 8; index++) {
+    for (let index = 1; index <= 3; index++) {
         crearFilaRecetas();
     }
 });
@@ -39,8 +39,8 @@ function crearFilaRecetas() {
                 //Añadimos la nueva celda a la fila
                 div_row.appendChild(div_col);
                 //Enviamos la fila
-                return div_row;
-            }).then(function (div_rowF) {
+            //     return div_row;
+            // }).then(function (div_rowF) {
                 //Esperamos a que la fila se llene para añadirla al documento
                 if (i == 4)
                     document.querySelector("#section_lista").appendChild(div_row);
@@ -100,6 +100,5 @@ function creaTarjetaReceta(data) {
     div_body.appendChild(a);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
-    
     return div_card;
 }

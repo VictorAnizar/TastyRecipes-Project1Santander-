@@ -14,7 +14,7 @@
 <body>
     <header id="header">
         <div id="logo">
-            <span class="gear">S</span>
+            <img src="<%=require('./svg/611-toque-cooking-hat-outline66.svg')%>" alt="imagen de persona con gorrito de chef">
         </div>
 
         <ul id="menu">
@@ -24,7 +24,8 @@
 
     </header>
     <main id="main">
-        <section id="section_buscar">
+        <section id="section_buscar" class="row">
+            <div class="col ">
             <h1>Las recetas dev</h1>
             <form action="#" method="post">
                 <label for="search">L</label>
@@ -32,6 +33,14 @@
                 <button type="submit" class="btn btn-primary btn-lg" id="btn_buscar">Buscar</button>
                 <button type="submit" class="btn btn-primary btn-lg" id="btn_random">Receta Aleatoria</button>
             </form>
+            
+            </div>
+            <div class="col baner-imagen fixed-top ">
+                <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>" alt="imagen de persona con gorrito de chef">
+            </div>
+        </section>
+        <section>
+           
         </section>
         <section id="section_lista" class="container-fluid container-recipes">
             <!-- Estructura base de tarjetas

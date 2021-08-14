@@ -28,6 +28,13 @@ module.exports = {
                   ]//usa estos loaders
             },
             {
+                test: /\.svg/,
+                use: {
+                  loader: "svg-url-loader",
+                  options: {},
+                },
+            },
+            {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
                 use: {

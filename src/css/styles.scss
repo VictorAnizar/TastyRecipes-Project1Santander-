@@ -2,7 +2,8 @@
 @import './animations.scss';
 //Fuentes
 @import './fuentes.scss';
-
+//Colores
+@import './colors.scss';
 
 
 *{
@@ -12,34 +13,27 @@
     list-style: none;
 }
 body{
-    background-color: #fae6b1;
+    background-color: $color-de-fondo-secundario;
     width: 100%;
     #header{
-        background-color: #31525b;
+        background-color: $color-principal;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         width: 100%;
-        height: 90px;
+        height: 70px;
         align-items: center;
         justify-content:space-between ;
         padding-left: 50px;
         padding-right: 50px;
         #logo{
-            font-family: "WebSymbolsRegular";
-            font-size: 50px;
-            color: white;
-            height: 90%;
-            flex-basis: 15%;
-            border-radius: 50px;
-            transition: all 300ms;
-            .gear{
-                display: block;
-                float: left;
-                animation-name: rotate-gear ;
-                animation-duration: 2s;
-                animation-iteration-count: infinite;
-                animation-timing-function: linear;
+            border-radius: 60px;
+            padding: 5px;
+            border: 2px solid #ffffff;
+
+
+            img{
+                height: 40px;
             }
         }
         
@@ -54,9 +48,9 @@ body{
                 li{
                     padding: 10px;
                     a{
-                        background-color: #ffa101;
+                        background-color: $color-principal-amarillo;
                         color: white;
-                        padding: 10px 20px;
+                        padding: 7px 17px;
                         text-decoration: none;
                         display: block;
                         border-radius: 10px;
@@ -80,6 +74,16 @@ body{
         #section_buscar{
             flex-basis: 100%;
             margin: 25px auto;
+            height: 600px;
+            .baner-imagen{
+                z-index: -1;
+                margin-bottom: -50px;
+                img{
+                    margin-top: 100px;
+                    margin-left: 50%;
+                }
+
+            }
             h1{
                 font-size: 50px;
             }
@@ -117,7 +121,7 @@ body{
                     flex-basis: 95%;
                     margin-top: 10px;
                     border-radius: 15px;
-                    background-color: #31525b;
+                    background-color: $color-principal;
                     border: none;
                     transition: all 300ms;
                 }
@@ -126,10 +130,12 @@ body{
                     box-shadow: 1px 1px 20px white ;
                 }
             }
+           
         }
         #section_lista{
             flex-basis: 100%;
             display: flex;
+            min-height: 223px;
             justify-content: space-between;
             flex-direction: row;
             flex-wrap: wrap;
@@ -145,8 +151,11 @@ body{
                 }
                 .card-body{
                     .card-title{
-                        min-height: 50px;
+                        min-height: 50px;   
                     }
+                }
+                .btn {
+                    background-color: $color-principal;
                 }
             }
             .card:hover{
@@ -158,7 +167,7 @@ body{
     }
     #footer{
         font-family: "WebSymbolsRegular";
-        background-color: #31525b;
+        background-color: $color-principal;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -168,7 +177,6 @@ body{
         justify-content:flex-end ;
         padding-left: 50px;
         padding-right: 50px;
-        position: fixed; 
         bottom: 0;
         font-size: 50px;
         div{
@@ -180,3 +188,16 @@ body{
     }
 }
 
+
+
+@media (max-width: 575px) {
+      .row {
+        display: grid;
+        .col {
+          float: left;
+          width: 90%;
+          padding: 5% 0%;
+        }
+      }
+    }
+  
