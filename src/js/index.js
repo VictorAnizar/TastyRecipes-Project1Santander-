@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
     //Se van a listar 8 filas de recetas de comida<
     //for (let index = 1; index <= 2; index++) {
     (crearFilaRecetas());
-    // }
+    //}
     //Esperamos 2 segundos para que carguen todas las tarjetas
     setTimeout(function () {
         //seleccionamos el conjunto de tarjetas
@@ -32,21 +32,16 @@ window.addEventListener('load', function () {
 
     }, 2000);
 
-    // getCategories()
-    // .then(
-    //     data => {
-    //         console.log(data.categories);
-    //     }
-    // );
-
+    //si se le da al boton cerrar
     document.querySelector(".close").addEventListener('click', function () {
         modal.style.display = "none";
         document.querySelector(".modal-content").style.display="none";
     });
+    //si se le da click en cualquier lugar que no sea el area de receta
     modal.addEventListener('click', function(){
         modal.style.display = "none";
         document.querySelector(".modal-content").style.display="none";
-    })
+    });
 });
 
 function getCategories() {
@@ -156,5 +151,6 @@ function creaTarjetaReceta(data) {
     div_body.appendChild(span);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
+
     return div_card;
 }
