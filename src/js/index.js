@@ -2,29 +2,51 @@ import { get } from "jquery";
 import "../css/styles.scss";
 
 window.addEventListener('load', function () {
-
-
+    let modal = document.querySelector("#modal");
+    let card_modal=document.createElement("div");
+    card_modal.classList.add("modal-content");
+    document.querySelector("#section_lista").appendChild(card_modal);
 
     //Se van a listar 8 filas de recetas de comida<
     //for (let index = 1; index <= 2; index++) {
-    console.log(crearFilaRecetas());
+    (crearFilaRecetas());
     // }
-
-    setTimeout(function() {
-
+    //Esperamos 2 segundos para que carguen todas las tarjetas
+    setTimeout(function () {
+        //seleccionamos el conjunto de tarjetas
         let tarjetas_html = document.getElementsByClassName("card");
         console.log(tarjetas_html);
-        if (tarjetas_html) {
-
-            console.log("Total tarjetas " + tarjetas_html.length);
-        }
+        //para cada una de las tarjetas, veremos si se le da click en alguna
         for (let index = 0; index < tarjetas_html.length; index++) {
-            console.log(tarjetas_html[index].innerHTML);
 
+            //si se le da click
+
+            tarjetas_html[index].addEventListener('click', function () {
+                console.log("click en card" + tarjetas_html[index].innerText);
+                //aparece un modal
+                modal.style.display = "block";
+                document.querySelector(".modal-content").style.display="block";
+                
+            });
         }
-    }, 2000);
-    console.log("hola");
 
+    }, 2000);
+
+    // getCategories()
+    // .then(
+    //     data => {
+    //         console.log(data.categories);
+    //     }
+    // );
+
+    document.querySelector(".close").addEventListener('click', function () {
+        modal.style.display = "none";
+        document.querySelector(".modal-content").style.display="none";
+    });
+    modal.addEventListener('click', function(){
+        modal.style.display = "none";
+        document.querySelector(".modal-content").style.display="none";
+    })
 });
 
 function getCategories() {
@@ -87,6 +109,7 @@ function crearFilaRecetas() {
 //la creacion de esta tarjeta esta basada en las tarjetas que nos ofrece bootstrap
 //las clases que se agregan son las que usa Bootstrap
 function creaTarjetaReceta(data) {
+    console.log(data);
     //se ccrea el elemento div
     let div_card = document.createElement("div");
     //se le agrega la clase al elemento div creado
@@ -124,14 +147,13 @@ function creaTarjetaReceta(data) {
     //se agrega el parrafo como hijo del div_body
     div_body.appendChild(p);
     //se crea el boton de la comida
-    let a = document.createElement("a");
+    let span = document.createElement("span");
     //se agregan las clases al boton
-    a.classList.add("btn");
-    a.classList.add("btn-primary");
-    a.setAttribute("href", "#");
-    a.setAttribute("target", "_blank");
+    // span.classList.add("btn");
+    // span.classList.add("btn-primary");
+
     //se agrega el parrafo como hijo del div_body
-    div_body.appendChild(a);
+    div_body.appendChild(span);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
 
