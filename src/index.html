@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <nav id="header" class=" fixed-top ">
+    <header id="header">
         <div id="logo">
-            <img src="<%=require('./svg/611-toque-cooking-hat-outline66.svg')%>" alt="imagen de persona con gorrito de chef">
+            <span class="gear">S</span>
         </div>
 
         <ul id="menu">
@@ -22,25 +22,16 @@
             <li><a href="#">Contacto</a></li>
         </ul>
 
-    </nav>
+    </header>
     <main id="main">
-        <section id="section_buscar" class="row">
-            <div class="col ">
-            <h1>Granny's Recipes</h1>
+        <section id="section_buscar">
+            <h1>Las recetas dev</h1>
             <form action="#" method="post">
                 <label for="search">L</label>
                 <input type="text" name="search" id="search_input">
                 <button type="submit" class="btn btn-primary btn-lg" id="btn_buscar">Buscar</button>
                 <button type="submit" class="btn btn-primary btn-lg" id="btn_random">Receta Aleatoria</button>
             </form>
-            
-            </div>
-            <div class="col baner-imagen fixed-top ">
-                <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>" alt="imagen de persona con gorrito de chef">
-            </div>
-        </section>
-        <section>
-           
         </section>
         <section id="section_lista" class="container-fluid container-recipes">
             <h1>Lo más destacado</h1>
