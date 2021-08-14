@@ -3,23 +3,35 @@ import "../css/styles.scss";
 
 window.addEventListener('load', function () {
 
-    //Se van a listar 8 filas de recetas de comida
-    for (let index = 1; index <= 2; index++) {
-         console.log(crearFilaRecetas());
-    }
 
-    let card=document.getElementsByClassName("card");
-    // card.addEventListener('click', function(){
-         console.log(card);
-    //     console.log("tarjeta seleccionada");
-    // });
+
+    //Se van a listar 8 filas de recetas de comida<
+    //for (let index = 1; index <= 2; index++) {
+    console.log(crearFilaRecetas());
+    // }
+
+    setTimeout(function() {
+
+        let tarjetas_html = document.getElementsByClassName("card");
+        console.log(tarjetas_html);
+        if (tarjetas_html) {
+
+            console.log("Total tarjetas " + tarjetas_html.length);
+        }
+        for (let index = 0; index < tarjetas_html.length; index++) {
+            console.log(tarjetas_html[index].innerHTML);
+
+        }
+    }, 2000);
+    console.log("hola");
+
 });
 
-function getCategories(){
+function getCategories() {
     return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
-    .then(
-        (data) => data.json()
-    );
+        .then(
+            (data) => data.json()
+        );
 }
 
 //funcion para hacer fetch a la API
@@ -34,7 +46,7 @@ function getRecetaRandom() {
 function crearFilaRecetas() {
     const div_row = document.createElement("div");
     div_row.classList.add("row");
-    const card=[];
+    const card = [];
     for (let i = 0; i < 5; i++) {
 
         getRecetaRandom()
@@ -44,7 +56,7 @@ function crearFilaRecetas() {
                 }
             )
             .then(function (div_card) {
-                card.push(div_card);
+
                 //Creamos un nuevo div que funciona como celda
                 const div_col = document.createElement("div");
                 div_col.classList.add("col", "container-box-padding");
@@ -54,14 +66,20 @@ function crearFilaRecetas() {
                 div_row.appendChild(div_col);
                 //Enviamos la fila
                 // return div_row;
-            //}).then(function (div_rowF) {
+                //}).then(function (div_rowF) {
                 //Esperamos a que la fila se llene para añadirla al documento
-                
-                    document.querySelector("#section_lista").appendChild(div_row);
 
-            });
+                document.querySelector("#section_lista").appendChild(div_row);
+                return div_card;
+            })
+            .then(
+                div_card => {
+                    card.push(div_card);
+                }
+            );
     }
     return card;
+
 }
 
 
@@ -107,14 +125,15 @@ function creaTarjetaReceta(data) {
     div_body.appendChild(p);
     //se crea el boton de la comida
     let a = document.createElement("a");
-    a.append("Ver receta ");
     //se agregan las clases al boton
-    //a.classList.add("btn");
-    //a.classList.add("btn-primary");
+    a.classList.add("btn");
+    a.classList.add("btn-primary");
+    a.setAttribute("href", "#");
+    a.setAttribute("target", "_blank");
     //se agrega el parrafo como hijo del div_body
-    //div_body.appendChild(a);
+    div_body.appendChild(a);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
-    
+
     return div_card;
 }
