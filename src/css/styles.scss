@@ -198,22 +198,25 @@ body{
                 overflow: auto;
                 background-color: rgb(0, 0, 0);
                 background-color: rgba(0, 0, 0, 0.9);
+                transition: all 300ms;
                 cursor: pointer;
             }
             
             .modal-content {
-                position: absolute;
+                position: fixed;
                 cursor:initial;
                 background-color: white;
                 z-index: 4;
                 margin: auto;
                 display: block;
                 width: 80%;
-                height: 95%;
-                
+                height: 88%; 
                 display: none;
                 top: 6%;
                 left: 10%;
+                animation-name: modal-open ;
+                animation-duration: 300ms;
+                animation-timing-function: linear;
             } 
             
             .close {
