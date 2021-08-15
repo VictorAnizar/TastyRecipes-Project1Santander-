@@ -7,6 +7,13 @@ window.addEventListener('load', function () {
     //for (let index = 1; index <= 2; index++) {
     (crearFilaRecetas());
     //}
+    //escucha del boton receta Aleatoria
+    document.querySelector("#btn_random").addEventListener('click', function (evt) {
+        evt.preventDefault();
+        recetaSorpresa();
+    });
+    //Cargamos la primer receta Sorpresa
+    recetaSorpresa();
 
 
 
@@ -27,6 +34,43 @@ modal.addEventListener('click', function () {
     modal.style.display = "none";
     document.querySelector(".modal-content").style.display = "none";
 });
+
+//Generar receta Aleatoria
+function recetaSorpresa() {
+    
+    getRecetaRandom()
+    .then(
+        data => {
+            return creaTarjetaReceta(data);
+        }
+    )
+    .then(function (div_card) {
+        const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
+        recetaSorpresaAleatoria.innerHTML='';
+        recetaSorpresaAleatoria.appendChild(div_card);
+    });
+
+}
+
+function asignarModal() {
+    //seleccionamos el conjunto de tarjetas
+    let tarjetas_html = document.getElementsByClassName("card");
+    console.log(tarjetas_html);
+    //para cada una de las tarjetas, veremos si se le da click en alguna
+    for (let index = 0; index < tarjetas_html.length; index++) {
+
+        //si se le da click
+
+        tarjetas_html[index].addEventListener('click', function () {
+            console.log("click en card" + tarjetas_html[index].innerText);
+            //aparece un modal
+            modal.style.display = "block";
+            document.querySelector(".modal-content").style.display="block";
+            
+        });
+    }
+
+}
 
 function getCategories() {
     return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
@@ -131,8 +175,6 @@ function creaTarjetaReceta(data) {
     // span.classList.add("btn");
     // span.classList.add("btn-primary");
 
-    //se agrega el parrafo como hijo del div_body
-    div_body.appendChild(span);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
     //se genera un Listener para la tarjeta
@@ -164,7 +206,7 @@ function creaTarjetaReceta(data) {
             
         }        
         arrIngredientes.push("</ul>")
-        arrIngredientes=arrIngredientes.join().split(",");
+        arrIngredientes=arrIngredientes.join();
         document.querySelector(".modal-content").innerHTML=(
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
@@ -174,7 +216,7 @@ function creaTarjetaReceta(data) {
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
-                ${arrIngredientes}
+                ${arrIngredientes.split(",")}
             </div>`
             );
         

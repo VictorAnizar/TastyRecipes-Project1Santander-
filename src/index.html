@@ -12,9 +12,9 @@
 </head>
 
 <body>
-    <header id="header">
+    <nav id="header" class=" fixed-top ">
         <div id="logo">
-            <span class="gear">S</span>
+            <img src="<%=require('./svg/611-toque-cooking-hat-outline66.svg')%>" alt="imagen de persona con gorrito de chef">
         </div>
 
         <ul id="menu">
@@ -22,16 +22,27 @@
             <li><a href="#">Contacto</a></li>
         </ul>
 
-    </header>
+    </nav>
     <main id="main">
-        <section id="section_buscar">
-            <h1>Las recetas dev</h1>
-            <form action="#" method="post">
+        <section id="section_buscar" class="row">
+            <div class="col ">
+            <h1>Granny's Recipes</h1>
+            <form  class="d-flex justify-content-center" >
                 <label for="search">L</label>
                 <input type="text" name="search" id="search_input">
                 <button type="submit" class="btn btn-primary btn-lg" id="btn_buscar">Buscar</button>
-                <button type="submit" class="btn btn-primary btn-lg" id="btn_random">Receta Aleatoria</button>
+                <button class="btn btn-primary btn-lg" id="btn_random">Receta Aleatoria</button>
             </form>
+            <div class="receta-sorpresa-container d-flex justify-content-center">
+            <div class="receta-sorpresa "></div>
+        </div>
+            </div>
+            <div class="col baner-imagen fixed-top ">
+                <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>" alt="imagen de persona con gorrito de chef">
+            </div>
+        </section>
+        <section>
+           
         </section>
         <section id="section_lista" class="container-fluid container-recipes">
             <h1>Lo más destacado</h1>
