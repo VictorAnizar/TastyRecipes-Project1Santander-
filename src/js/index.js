@@ -141,7 +141,7 @@ function creaTarjetaReceta(data) {
         console.log(div_card);
         //aparece un modal
         modal.style.display = "block";
-        document.querySelector(".modal-content").style.display = "flex";
+        document.querySelector(".modal-content").style.display = "grid";
 
         //se genera la imagen
         //se crea un elemento imagen
@@ -153,16 +153,18 @@ function creaTarjetaReceta(data) {
         h2_modal.append(data.meals[0].strMeal);
 
         let arrIngredientes=[];
+        arrIngredientes.push("<ul>")
         for (let index = 1; index <= 20; index++) {
-            
+            let li=document.createElement("li");
             if(data.meals[0]["strIngredient"+index]==""  || data.meals[0]["strIngredient"+index]==null){
                 continue
             }else{
-                arrIngredientes.push(index+"  "+data.meals[0]["strIngredient"+index] + "->" +data.meals[0]["strMeasure"+index]+"  ");
+                arrIngredientes.push("<li>"+index+" "+data.meals[0]["strIngredient"+index] + " ( " +data.meals[0]["strMeasure"+index]+" ) </li>");
             }
             
         }        
-
+        arrIngredientes.push("</ul>")
+        arrIngredientes=arrIngredientes.join();
         document.querySelector(".modal-content").innerHTML=(
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
@@ -172,7 +174,7 @@ function creaTarjetaReceta(data) {
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
-                ${arrIngredientes}
+                ${arrIngredientes.split(",")}
             </div>`
             );
         

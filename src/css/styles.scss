@@ -9,7 +9,7 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
-    list-style: none;
+    // list-style: none;
 }
 
 
@@ -208,8 +208,9 @@ body{
                 background-color: white;
                 z-index: 4;
                 margin: auto;
-                display: flex;
-
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 10px;
                 width: 80%;
                 height: 88%; 
                 display: none;
@@ -219,21 +220,23 @@ body{
                 animation-duration: 300ms;
                 animation-timing-function: linear;
                 #image-title-modal{
-                    flex-basis: 50%;
-                    display: flex;
+                    width: 100%;
+                    margin: 20px;
                     img{
-                        flex-basis: 100%;
-                        width: 80%;
-                        margin: 20px;
+                        width: 95%;
+                        max-height: 550px;
                     }
                     h1{
-                        margin: 10px;
-                        flex-basis: 100%;
                         text-align: center;
+                        margin-top: 20px;
                     }
                 }
                 #body-info-modal{
-                    flex-basis: 50%;
+                    width: 100%;
+                    margin: 20px;
+                    h2{
+                        margin-top: 0px;
+                    }
                 }
 
             } 
