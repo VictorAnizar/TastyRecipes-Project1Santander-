@@ -38,30 +38,19 @@ window.addEventListener('load', function () {
 
 
 });
-function escuchadoresCloseModal(){
-//listeners o escuchadores que estan a la espera de cerrar el modal
-let modal = document.querySelector("#modal");
-let card_modal = document.createElement("div");
-card_modal.classList.add("modal-content");
-document.querySelector("#section_lista").appendChild(card_modal);
+function escuchadoresCloseModal() {
+    //listeners o escuchadores que estan a la espera de cerrar el modal
+    let modal = document.querySelector("#modal");
 
-//si se le da al boton cerrar
-document.querySelector(".close").addEventListener('click', function () {
-    
-    setTimeout(() => {
-        document.querySelector(".modal-content").style.display = "none";
-        modal.style.display = "none";
-    }, 300);
-    document.querySelector(".modal-content").style.animationName=("modal-close");
-});
-//si se le da click en cualquier lugar que no sea el area de receta
-modal.addEventListener('click', function () {
-    setTimeout(() => {
-        document.querySelector(".modal-content").style.display = "none";
-        modal.style.display = "none";
-    }, 300);
-    document.querySelector(".modal-content").style.animationName=("modal-close");
-});
+
+    //si se le da click en cualquier lugar que no sea el area de receta
+    modal.addEventListener('click', function () {
+        setTimeout(() => {
+            document.querySelector(".modal-content").style.display = "none";
+            modal.style.display = "none";
+        }, 300);
+        document.querySelector(".modal-content").style.animationName = ("modal-close");
+    });
 
 }
 //Generar receta Aleatoria
@@ -178,6 +167,9 @@ function creaTarjetaReceta(data) {
     //se genera un Listener para la tarjeta
 
     div_card.addEventListener('click', function () {
+        let card_modal = document.createElement("div");
+        card_modal.classList.add("modal-content");
+        document.querySelector("#section_lista").appendChild(card_modal);
         console.log("click en card");
         console.log(div_card);
         //aparece un modal
@@ -223,7 +215,7 @@ function creaTarjetaReceta(data) {
                 <p>${data.meals[0].strInstructions}<p/>
             </div>`
         );
-        document.querySelector(".modal-content").style.animationName=("modal-open");
+        document.querySelector(".modal-content").style.animationName = ("modal-open");
     });
     return div_card;
 }
