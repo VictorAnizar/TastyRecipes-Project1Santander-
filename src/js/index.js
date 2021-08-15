@@ -141,8 +141,41 @@ function creaTarjetaReceta(data) {
         console.log(div_card);
         //aparece un modal
         modal.style.display = "block";
-        document.querySelector(".modal-content").style.display = "block";
-        document.querySelector(".modal-content").append(data.meals[0].strMeal);
+        document.querySelector(".modal-content").style.display = "flex";
+
+        //se genera la imagen
+        //se crea un elemento imagen
+        let img_modal = document.createElement("img");
+        img_modal.src = data.meals[0].strMealThumb;
+
+        //se genera el titulo
+        let h2_modal = document.createElement("h2");
+        h2_modal.append(data.meals[0].strMeal);
+
+        let arrIngredientes=[];
+        for (let index = 1; index <= 20; index++) {
+            
+            if(data.meals[0]["strIngredient"+index]==""  || data.meals[0]["strIngredient"+index]==null){
+                continue
+            }else{
+                arrIngredientes.push(index+"  "+data.meals[0]["strIngredient"+index] + "->" +data.meals[0]["strMeasure"+index]+"  ");
+            }
+            
+        }        
+
+        document.querySelector(".modal-content").innerHTML=(
+            `<div id="image-title-modal">
+            <img src="${data.meals[0].strMealThumb}"/>
+            <h1>
+               ${data.meals[0].strMeal} 
+            </h1>
+            </div>
+            <div id="body-info-modal">
+                <h2>Ingredientes</h2>
+                ${arrIngredientes}
+            </div>`
+            );
+        
     });
     return div_card;
 }
