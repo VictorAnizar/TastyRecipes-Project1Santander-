@@ -52,25 +52,7 @@ function recetaSorpresa() {
 
 }
 
-function asignarModal() {
-    //seleccionamos el conjunto de tarjetas
-    let tarjetas_html = document.getElementsByClassName("card");
-    console.log(tarjetas_html);
-    //para cada una de las tarjetas, veremos si se le da click en alguna
-    for (let index = 0; index < tarjetas_html.length; index++) {
 
-        //si se le da click
-
-        tarjetas_html[index].addEventListener('click', function () {
-            console.log("click en card" + tarjetas_html[index].innerText);
-            //aparece un modal
-            modal.style.display = "block";
-            document.querySelector(".modal-content").style.display="block";
-            
-        });
-    }
-
-}
 
 function getCategories() {
     return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
@@ -197,26 +179,29 @@ function creaTarjetaReceta(data) {
         let arrIngredientes=[];
         arrIngredientes.push("<ul>")
         for (let index = 1; index <= 20; index++) {
-            let li=document.createElement("li");
+            
             if(data.meals[0]["strIngredient"+index]==""  || data.meals[0]["strIngredient"+index]==null){
                 continue
             }else{
-                arrIngredientes.push("<li>"+index+" "+data.meals[0]["strIngredient"+index] + " ( " +data.meals[0]["strMeasure"+index]+" ) </li>");
+                arrIngredientes.push("<li>"+" "+data.meals[0]["strIngredient"+index] + " ( " +data.meals[0]["strMeasure"+index]+" ) </li>");
             }
             
         }        
         arrIngredientes.push("</ul>")
-        arrIngredientes=arrIngredientes.join();
+        // arrIngredientes=arrIngredientes.join();
         document.querySelector(".modal-content").innerHTML=(
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
             <h1>
                ${data.meals[0].strMeal} 
             </h1>
+            <h4>
+                Categoría: ${data.meals[0].strCategory}
+            </h4>
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
-                ${arrIngredientes.split(",")}
+                ${ arrIngredientes.toString().replaceAll(",","")}
             </div>`
             );
         
