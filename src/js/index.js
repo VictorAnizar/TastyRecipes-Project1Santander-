@@ -3,10 +3,30 @@ import "../css/styles.scss";
 //funcion "main"
 window.addEventListener('load', function () {
 
-    //Se van a listar 8 filas de recetas de comida<
-    //for (let index = 1; index <= 2; index++) {
+
+
+    let search_input = document.querySelector("#search_input");
+    let btn_buscar = document.querySelector("#btn_buscar");
+
+    btn_buscar.addEventListener('click', function () {
+        if (search_input.value != "") {
+            console.log(search_input.value);
+            fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + search_input.value)
+                .then(
+                    (data) => data.json()
+                )
+                .then(
+                    (data) => {
+                        console.log(data);
+                        document.querySelector("#btn_random").style.display = "none";
+                    }
+                );
+        }
+    });
+
+
+    //Generacion de Componentes al abrir la página
     (crearFilaRecetas());
-    //}
     //escucha del boton receta Aleatoria
     document.querySelector("#btn_random").addEventListener('click', function (evt) {
         evt.preventDefault();
@@ -14,10 +34,11 @@ window.addEventListener('load', function () {
     });
     //Cargamos la primer receta Sorpresa
     recetaSorpresa();
-
+    escuchadoresCloseModal();
 
 
 });
+function escuchadoresCloseModal(){
 //listeners o escuchadores que estan a la espera de cerrar el modal
 let modal = document.querySelector("#modal");
 let card_modal = document.createElement("div");
@@ -26,29 +47,37 @@ document.querySelector("#section_lista").appendChild(card_modal);
 
 //si se le da al boton cerrar
 document.querySelector(".close").addEventListener('click', function () {
-    modal.style.display = "none";
-    document.querySelector(".modal-content").style.display = "none";
+    
+    setTimeout(() => {
+        document.querySelector(".modal-content").style.display = "none";
+        modal.style.display = "none";
+    }, 300);
+    document.querySelector(".modal-content").style.animationName=("modal-close");
 });
 //si se le da click en cualquier lugar que no sea el area de receta
 modal.addEventListener('click', function () {
-    modal.style.display = "none";
-    document.querySelector(".modal-content").style.display = "none";
+    setTimeout(() => {
+        document.querySelector(".modal-content").style.display = "none";
+        modal.style.display = "none";
+    }, 300);
+    document.querySelector(".modal-content").style.animationName=("modal-close");
 });
 
+}
 //Generar receta Aleatoria
 function recetaSorpresa() {
-    
+
     getRecetaRandom()
-    .then(
-        data => {
-            return creaTarjetaReceta(data);
-        }
-    )
-    .then(function (div_card) {
-        const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
-        recetaSorpresaAleatoria.innerHTML='';
-        recetaSorpresaAleatoria.appendChild(div_card);
-    });
+        .then(
+            data => {
+                return creaTarjetaReceta(data);
+            }
+        )
+        .then(function (div_card) {
+            const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
+            recetaSorpresaAleatoria.innerHTML = '';
+            recetaSorpresaAleatoria.appendChild(div_card);
+        });
 
 }
 
@@ -92,10 +121,6 @@ function crearFilaRecetas() {
                 //Añadimos la nueva celda a la fila
                 div_row.appendChild(div_col);
                 //Enviamos la fila
-                // return div_row;
-                //}).then(function (div_rowF) {
-                //Esperamos a que la fila se llene para añadirla al documento
-
                 document.querySelector("#section_lista").appendChild(div_row);
                 return div_card;
             })
@@ -114,7 +139,6 @@ function crearFilaRecetas() {
 //la creacion de esta tarjeta esta basada en las tarjetas que nos ofrece bootstrap
 //las clases que se agregan son las que usa Bootstrap
 function creaTarjetaReceta(data) {
-    console.log(data);
     //se ccrea el elemento div
     let div_card = document.createElement("div");
     //se le agrega la clase al elemento div creado
@@ -151,15 +175,8 @@ function creaTarjetaReceta(data) {
     p.classList.add("card-text");
     //se agrega el parrafo como hijo del div_body
     div_body.appendChild(p);
-    //se crea el boton de la comida
-    let span = document.createElement("span");
-    //se agregan las clases al boton
-    // span.classList.add("btn");
-    // span.classList.add("btn-primary");
-
-    //se agrega todo al div principal
-    //document.querySelector("#section_lista").appendChild(div_card);
     //se genera un Listener para la tarjeta
+
     div_card.addEventListener('click', function () {
         console.log("click en card");
         console.log(div_card);
@@ -176,20 +193,20 @@ function creaTarjetaReceta(data) {
         let h2_modal = document.createElement("h2");
         h2_modal.append(data.meals[0].strMeal);
 
-        let arrIngredientes=[];
+        let arrIngredientes = [];
         arrIngredientes.push("<ul>")
         for (let index = 1; index <= 20; index++) {
-            
-            if(data.meals[0]["strIngredient"+index]==""  || data.meals[0]["strIngredient"+index]==null){
+
+            if (data.meals[0]["strIngredient" + index] == "" || data.meals[0]["strIngredient" + index] == null) {
                 continue
-            }else{
-                arrIngredientes.push("<li>"+" "+data.meals[0]["strIngredient"+index] + " ( " +data.meals[0]["strMeasure"+index]+" ) </li>");
+            } else {
+                arrIngredientes.push("<li>" + " " + data.meals[0]["strIngredient" + index] + " ( " + data.meals[0]["strMeasure" + index] + " ) </li>");
             }
-            
-        }        
+
+        }
         arrIngredientes.push("</ul>")
         // arrIngredientes=arrIngredientes.join();
-        document.querySelector(".modal-content").innerHTML=(
+        document.querySelector(".modal-content").innerHTML = (
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
             <h1>
@@ -201,12 +218,12 @@ function creaTarjetaReceta(data) {
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
-                ${ arrIngredientes.toString().replaceAll(",","")}
+                ${arrIngredientes.toString().replaceAll(",", "")}
                 <h2>Instrucciones</h2>
                 <p>${data.meals[0].strInstructions}<p/>
             </div>`
-            );
-        
+        );
+        document.querySelector(".modal-content").style.animationName=("modal-open");
     });
     return div_card;
 }

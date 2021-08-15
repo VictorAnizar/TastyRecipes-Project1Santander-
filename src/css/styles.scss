@@ -13,7 +13,11 @@
     // list-style: none;
 }
 
-
+.closed{
+    animation-name: modal-close ;
+    animation-duration: 300ms;
+    animation-timing-function: linear;
+}
 
 body{
     background-color: $color-de-fondo-secundario;
@@ -93,7 +97,7 @@ body{
             h1{
                 font-size: 50px;
             }
-            form{
+            #form-fake{
                 display: flex;
                 flex-wrap: wrap;
                 width:40%;
@@ -163,6 +167,7 @@ body{
             width: 100%;
             cursor: pointer;
             border-radius: 10px;
+            
             transition: all 300ms;
             img{
                 width: 100%;
@@ -244,7 +249,7 @@ body{
                 margin: 20px;
                 img{
                     width: 100%;
-                    max-height: 600px;
+                    max-height: 500px;
                     box-shadow: 0px 0px 5px black;
                 }
                 h1{
@@ -269,6 +274,7 @@ body{
                 }
                 p{
                     text-align: justify;
+                    margin-right: 10px;
                 }
             }
 
