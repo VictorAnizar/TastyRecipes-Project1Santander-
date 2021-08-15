@@ -229,9 +229,10 @@ body{
             background-color: white;
             z-index: 4;
             margin: auto;
-            display: block;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 10px;
             width: 80%;
-
             height: 88%; 
             display: none;
             top: 6%;
@@ -239,6 +240,26 @@ body{
             animation-name: modal-open ;
             animation-duration: 300ms;
             animation-timing-function: linear;
+            #image-title-modal{
+                width: 100%;
+                margin: 20px;
+                img{
+                    width: 95%;
+                    max-height: 550px;
+                }
+                h1{
+                    text-align: center;
+                    margin-top: 20px;
+                }
+            }
+            #body-info-modal{
+                width: 100%;
+                margin: 20px;
+                h2{
+                    margin-top: 0px;
+                }
+            }
+
         } 
 
         

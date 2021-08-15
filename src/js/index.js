@@ -1,47 +1,12 @@
-import { event, get } from "jquery";
+import { get } from "jquery";
 import "../css/styles.scss";
-
+//funcion "main"
 window.addEventListener('load', function () {
-    let modal = document.querySelector("#modal");
-    let card_modal=document.createElement("div");
-    card_modal.classList.add("modal-content");
-    document.querySelector("#section_lista").appendChild(card_modal);
 
     //Se van a listar 8 filas de recetas de comida<
     //for (let index = 1; index <= 2; index++) {
     (crearFilaRecetas());
     //}
-    //Esperamos 2 segundos para que carguen todas las tarjetas
-    setTimeout(function () {
-        //seleccionamos el conjunto de tarjetas
-        let tarjetas_html = document.getElementsByClassName("card");
-        console.log(tarjetas_html);
-        //para cada una de las tarjetas, veremos si se le da click en alguna
-        for (let index = 0; index < tarjetas_html.length; index++) {
-
-            //si se le da click
-
-            tarjetas_html[index].addEventListener('click', function () {
-                console.log("click en card" + tarjetas_html[index].innerText);
-                //aparece un modal
-                modal.style.display = "block";
-                document.querySelector(".modal-content").style.display="block";
-                
-            });
-        }
-
-    }, 6000);
-
-    //si se le da al boton cerrar
-    document.querySelector(".close").addEventListener('click', function () {
-        modal.style.display = "none";
-        document.querySelector(".modal-content").style.display="none";
-    });
-    //si se le da click en cualquier lugar que no sea el area de receta
-    modal.addEventListener('click', function(){
-        modal.style.display = "none";
-        document.querySelector(".modal-content").style.display="none";
-    });
     //escucha del boton receta Aleatoria
     document.querySelector("#btn_random").addEventListener('click', function (evt) {
         evt.preventDefault();
@@ -49,6 +14,25 @@ window.addEventListener('load', function () {
     });
     //Cargamos la primer receta Sorpresa
     recetaSorpresa();
+
+
+
+});
+//listeners o escuchadores que estan a la espera de cerrar el modal
+let modal = document.querySelector("#modal");
+let card_modal = document.createElement("div");
+card_modal.classList.add("modal-content");
+document.querySelector("#section_lista").appendChild(card_modal);
+
+//si se le da al boton cerrar
+document.querySelector(".close").addEventListener('click', function () {
+    modal.style.display = "none";
+    document.querySelector(".modal-content").style.display = "none";
+});
+//si se le da click en cualquier lugar que no sea el area de receta
+modal.addEventListener('click', function () {
+    modal.style.display = "none";
+    document.querySelector(".modal-content").style.display = "none";
 });
 
 //Generar receta Aleatoria
@@ -191,15 +175,50 @@ function creaTarjetaReceta(data) {
     // span.classList.add("btn");
     // span.classList.add("btn-primary");
 
-    //se agrega el parrafo como hijo del div_body
-    div_body.appendChild(span);
     //se agrega todo al div principal
     //document.querySelector("#section_lista").appendChild(div_card);
+    //se genera un Listener para la tarjeta
     div_card.addEventListener('click', function () {
-        console.log("click en card" + div_card.innerText);
+        console.log("click en card");
+        console.log(div_card);
         //aparece un modal
         modal.style.display = "block";
-        document.querySelector(".modal-content").style.display="block";
+        document.querySelector(".modal-content").style.display = "grid";
+
+        //se genera la imagen
+        //se crea un elemento imagen
+        let img_modal = document.createElement("img");
+        img_modal.src = data.meals[0].strMealThumb;
+
+        //se genera el titulo
+        let h2_modal = document.createElement("h2");
+        h2_modal.append(data.meals[0].strMeal);
+
+        let arrIngredientes=[];
+        arrIngredientes.push("<ul>")
+        for (let index = 1; index <= 20; index++) {
+            let li=document.createElement("li");
+            if(data.meals[0]["strIngredient"+index]==""  || data.meals[0]["strIngredient"+index]==null){
+                continue
+            }else{
+                arrIngredientes.push("<li>"+index+" "+data.meals[0]["strIngredient"+index] + " ( " +data.meals[0]["strMeasure"+index]+" ) </li>");
+            }
+            
+        }        
+        arrIngredientes.push("</ul>")
+        arrIngredientes=arrIngredientes.join();
+        document.querySelector(".modal-content").innerHTML=(
+            `<div id="image-title-modal">
+            <img src="${data.meals[0].strMealThumb}"/>
+            <h1>
+               ${data.meals[0].strMeal} 
+            </h1>
+            </div>
+            <div id="body-info-modal">
+                <h2>Ingredientes</h2>
+                ${arrIngredientes.split(",")}
+            </div>`
+            );
         
     });
     return div_card;
