@@ -164,7 +164,7 @@ function creaTarjetaReceta(data) {
             
         }        
         arrIngredientes.push("</ul>")
-        arrIngredientes=arrIngredientes.join();
+        arrIngredientes=arrIngredientes.join().split(",");
         document.querySelector(".modal-content").innerHTML=(
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
@@ -174,7 +174,7 @@ function creaTarjetaReceta(data) {
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
-                ${arrIngredientes.split(",")}
+                ${arrIngredientes}
             </div>`
             );
         
