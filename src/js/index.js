@@ -202,6 +202,8 @@ function creaTarjetaReceta(data) {
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
                 ${ arrIngredientes.toString().replaceAll(",","")}
+                <h2>Instrucciones</h2>
+                <p>${data.meals[0].strInstructions}<p/>
             </div>`
             );
         
