@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
             document.querySelector("#btn_random").classList.add("closed");
             document.querySelector("#div_recipe_random").classList.add("closed");
 
-            document.querySelector("#title_section_lista").innerHTML = "Resultados para \"" + search_input.value + "\"";
+            
             let sectionLista = document.querySelector("#section_lista");
 
             sectionLista.innerHTML = '<hr>';
@@ -46,7 +46,7 @@ window.addEventListener('load', function () {
             getRecetaSearch(search_input.value)
                 .then(
                     data => {
-                        console.log(data);
+                        document.querySelector("#title_section_lista").innerHTML = " "+data.meals.length+" resultados para \"" + search_input.value + "\"";
                         document.querySelector("#footer").style.position="";
                         document.querySelector("#footer").style.bottom="";
                         for (let index = 0; index < data.meals.length; index++) {
