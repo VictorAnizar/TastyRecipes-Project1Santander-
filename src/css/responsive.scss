@@ -1,0 +1,64 @@
+@media (max-width: 1000px){
+   #main{
+       #section_buscar{
+           .col{
+               h1{
+                   text-align: center;
+               }
+               #form-fake{
+                   width: 100%;
+               }
+               #div_recipe_random{
+                   width: 100%;
+               }
+           }
+       }
+       #section_titulo{
+           text-align: center;
+           width: 100%;
+       }
+       #section_lista{
+           .row{
+               div{
+                   flex-basis: 30%;
+                   margin-top: 10px;
+                   margin-bottom: 10px;
+               }
+           }
+       }
+   }
+}
+
+@media (max-width: 575px){
+    #main{
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+        #section_buscar{
+            .col{
+                width: 100%;
+                #form-fake{
+                    label{
+                        left: 8%;
+                    }
+                }
+                #div_recipe_random{
+                    .receta-sorpresa {
+                        max-width: none;
+                    }
+                }
+            }
+        }
+        
+        #section_lista{
+            .row{
+                div{
+                   width: 100%;
+                   .card{
+                       margin-left: 0px;
+                       margin-right: 0px;
+                   }
+                }
+            }
+        }
+    }
+ }
