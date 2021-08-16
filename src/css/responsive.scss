@@ -16,6 +16,24 @@
        #section_titulo{
            text-align: center;
            width: 100%;
+           .modal-content{
+                grid-template-columns: none !important;
+                grid-template-rows: repeat(2, 1fr) !important;
+                overflow: scroll !important;
+                #image-title-modal{
+                    margin: 20px auto !important;
+                }
+                #body-info-modal{
+                    margin: 20px auto !important;
+                    ul{
+                        list-style: none !important;
+                        padding: 0 !important;
+                    }
+                    p{
+                        margin-right: 0 !important;
+                    }
+                }
+           }
        }
        #section_lista{
            .row{
@@ -56,6 +74,26 @@
             }
         }
         
+        #section_titulo{
+            #modal{
+                .close{
+                    right: 10px !important;
+                }
+            }
+            .modal-content{
+                 #body-info-modal{
+                     ul{
+                        padding: 0 !important;
+                        list-style:square !important;
+                        grid-template-columns: none !important;
+                     }
+                     p{
+                        margin-right: 0 !important;
+                     }
+                 }
+            }
+        }
+
         #section_lista{
             .row{
                 div{
