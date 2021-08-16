@@ -47,6 +47,8 @@ window.addEventListener('load', function () {
                 .then(
                     data => {
                         console.log(data);
+                        document.querySelector("#footer").style.position="";
+                        document.querySelector("#footer").style.bottom="";
                         for (let index = 0; index < data.meals.length; index++) {
                             console.log(data);
                             //se ccrea el elemento div
@@ -74,6 +76,8 @@ window.addEventListener('load', function () {
                             let h5 = document.createElement("h5");
                             //se le agrega el nombre de la comda al titulo
                             h5.append(data.meals[index].strMeal);
+                            // console.log(data.meals[index].strMeal.toLowerCase().indexOf(search_input.value.toString()));
+                           
                             //se agrega el titulo como hijo de div_title
                             div_title.appendChild(h5);
                             //se agrega div_title como hijo de div_body
@@ -86,7 +90,10 @@ window.addEventListener('load', function () {
                             //se agrega el parrafo como hijo del div_body
                             div_body.appendChild(p);
                             //se genera un Listener para la tarjeta
-
+                            div_card.style.animationName="modal-open";
+                            div_card.style.animationDuration="300ms";
+                            div_card.style.animationTimingFunction="linear";
+                
 
                             div_card.addEventListener('click', function () {
                                 let card_modal = document.createElement("div");
@@ -145,7 +152,9 @@ window.addEventListener('load', function () {
                     }
                 )
                 .catch(
-                    data =>  {
+                    () =>  {
+                        document.querySelector("#footer").style.position="fixed";
+                        document.querySelector("#footer").style.bottom="0";
                         document.querySelector("#title_section_lista").innerHTML = "No se encontraron resultados para \"" + search_input.value + "\"";
                     }
                 );
