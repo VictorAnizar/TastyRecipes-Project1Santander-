@@ -116,12 +116,12 @@ window.addEventListener('load', function () {
 
                                 let arrIngredientes = [];
                                 arrIngredientes.push("<ul>")
-                                for (let index = 1; index <= 20; index++) {
+                                for (let jindex = 1; jindex <= 20; jindex++) {
 
-                                    if (data.meals[0]["strIngredient" + index] == "" || data.meals[index]["strIngredient" + index] == null) {
+                                    if (data.meals[index]["strIngredient" + jindex] == "" || data.meals[index]["strIngredient" + jindex] == null) {
                                         continue
                                     } else {
-                                        arrIngredientes.push("<li>" + " " + data.meals[index]["strIngredient" + index] + " ( " + data.meals[index]["strMeasure" + index] + " ) </li>");
+                                        arrIngredientes.push("<li>" + " " + data.meals[index]["strIngredient" + jindex] + " ( " + data.meals[index]["strMeasure" + jindex] + " ) </li>");
                                     }
 
                                 }
