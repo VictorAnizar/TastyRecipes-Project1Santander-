@@ -5,24 +5,8 @@ window.addEventListener('load', function () {
 
 
 
-    let search_input = document.querySelector("#search_input");
-    let btn_buscar = document.querySelector("#btn_buscar");
 
-    btn_buscar.addEventListener('click', function () {
-        if (search_input.value != "") {
-            console.log(search_input.value);
-            fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + search_input.value)
-                .then(
-                    (data) => data.json()
-                )
-                .then(
-                    (data) => {
-                        console.log(data);
-                        document.querySelector("#btn_random").style.display = "none";
-                    }
-                );
-        }
-    });
+
 
 
     //Generacion de Componentes al abrir la página
@@ -36,6 +20,139 @@ window.addEventListener('load', function () {
     recetaSorpresa();
     escuchadoresCloseModal();
 
+
+
+
+
+    let search_input = document.querySelector("#search_input");
+    let btn_buscar = document.querySelector("#btn_buscar");
+
+    btn_buscar.addEventListener('click', function () {
+        if (search_input.value != "") {
+            console.log(search_input.value);
+
+            setTimeout(() => {
+                document.querySelector("#btn_random").style.display = "none";
+                document.querySelector("#div_recipe_random").style.display = "none";
+            }, 300);
+            document.querySelector("#btn_random").classList.add("closed");
+            document.querySelector("#div_recipe_random").classList.add("closed");
+
+            document.querySelector("#title_section_lista").innerHTML = "Resultados para \"" + search_input.value + "\"";
+            let sectionLista = document.querySelector("#section_lista");
+
+            sectionLista.innerHTML = '<hr>';
+
+            getRecetaSearch(search_input.value)
+                .then(
+                    data => {
+                        console.log(data);
+                        for (let index = 0; index < data.meals.length; index++) {
+                            console.log(data);
+                            //se ccrea el elemento div
+                            let div_card = document.createElement("div");
+                            //se le agrega la clase al elemento div creado
+                            div_card.classList.add("card");
+                            //se crea un elemento imagen
+                            let img_card = document.createElement("img");
+                            img_card.src = data.meals[index].strMealThumb;
+                            //se le agregan clases a la imagen
+                            img_card.classList.add("card-img-top");
+                            //se introduce como hijo la imagen al div creado
+                            div_card.appendChild(img_card);
+                            //se crea el div del cuerpo de la tarjeta
+                            let div_body = document.createElement("div");
+                            //se le agrega la clase
+                            div_body.classList.add("card-body");
+                            //se introduce como hijo el div_body al div_card
+                            div_card.appendChild(div_body);
+                            //Se crea un div para el titulo
+                            let div_title = document.createElement("div");
+                            //se le agrega la clase
+                            div_title.classList.add("card-title");
+                            //se crea el titulo
+                            let h5 = document.createElement("h5");
+                            //se le agrega el nombre de la comda al titulo
+                            h5.append(data.meals[index].strMeal);
+                            //se agrega el titulo como hijo de div_title
+                            div_title.appendChild(h5);
+                            //se agrega div_title como hijo de div_body
+                            div_body.appendChild(div_title);
+                            //se crea el parafo de la comida
+                            let p = document.createElement("p");
+                            p.append("Categoría: " + data.meals[index].strCategory);
+                            //se agregan las clases al parrafo
+                            p.classList.add("card-text");
+                            //se agrega el parrafo como hijo del div_body
+                            div_body.appendChild(p);
+                            //se genera un Listener para la tarjeta
+
+
+                            div_card.addEventListener('click', function () {
+                                let card_modal = document.createElement("div");
+                                card_modal.classList.add("modal-content");
+                                document.querySelector("#section_titulo").appendChild(card_modal);
+                                console.log("click en card");
+                                console.log(div_card);
+                                //aparece un modal
+                                modal.style.display = "block";
+                                document.querySelector(".modal-content").style.display = "grid";
+
+                                //se genera la imagen
+                                //se crea un elemento imagen
+                                let img_modal = document.createElement("img");
+                                img_modal.src = data.meals[index].strMealThumb;
+
+                                //se genera el titulo
+                                let h2_modal = document.createElement("h2");
+                                h2_modal.append(data.meals[index].strMeal);
+
+                                let arrIngredientes = [];
+                                arrIngredientes.push("<ul>")
+                                for (let index = 1; index <= 20; index++) {
+
+                                    if (data.meals[0]["strIngredient" + index] == "" || data.meals[index]["strIngredient" + index] == null) {
+                                        continue
+                                    } else {
+                                        arrIngredientes.push("<li>" + " " + data.meals[index]["strIngredient" + index] + " ( " + data.meals[index]["strMeasure" + index] + " ) </li>");
+                                    }
+
+                                }
+                                arrIngredientes.push("</ul>")
+                                // arrIngredientes=arrIngredientes.join();
+                                document.querySelector(".modal-content").innerHTML = (
+                                    `<div id="image-title-modal">
+                                    <img src="${data.meals[index].strMealThumb}"/>
+                                    <h1>
+                                    ${data.meals[index].strMeal} 
+                                    </h1>
+                                    <h4>
+                                        Categoría: ${data.meals[index].strCategory}
+                                    </h4>
+                                    </div>
+                                    <div id="body-info-modal">
+                                        <h2>Ingredientes</h2>
+                                        ${arrIngredientes.toString().replaceAll(",", "")}
+                                        <h2>Instrucciones</h2>
+                                        <p>${data.meals[index].strInstructions}<p/>
+                                    </div>`
+                                );
+                                document.querySelector(".modal-content").style.animationName = ("modal-open");
+                            });
+
+                            document.querySelector("#section_lista").appendChild(div_card);
+                        }
+                    }
+                )
+                .catch(
+                    data =>  {
+                        document.querySelector("#title_section_lista").innerHTML = "No se encontraron resultados para \"" + search_input.value + "\"";
+                    }
+                );
+
+
+        }
+    });
 
 });
 function escuchadoresCloseModal() {
@@ -71,7 +188,7 @@ function recetaSorpresa() {
 }
 
 
-
+//funcion para hacer fetch a la api y regresa las categorias
 function getCategories() {
     return fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
         .then(
@@ -79,13 +196,22 @@ function getCategories() {
         );
 }
 
-//funcion para hacer fetch a la API
+//funcion para hacer fetch a la API y regresa recetas aleatorias
 function getRecetaRandom() {
     return fetch('https://www.themealdb.com/api/json/v1/1/random.php')
         .then(
             (data) => data.json()
         );
 }
+
+//funcion para hacer fetch a la API cuando se busca
+function getRecetaSearch(search_input_value) {
+    return fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=' + search_input_value)
+        .then(
+            (data) => data.json()
+        );
+}
+
 
 //Funcion para crear filas ordenadas de 5 columnas
 function crearFilaRecetas() {
@@ -128,6 +254,7 @@ function crearFilaRecetas() {
 //la creacion de esta tarjeta esta basada en las tarjetas que nos ofrece bootstrap
 //las clases que se agregan son las que usa Bootstrap
 function creaTarjetaReceta(data) {
+    console.log(data);
     //se ccrea el elemento div
     let div_card = document.createElement("div");
     //se le agrega la clase al elemento div creado
@@ -169,7 +296,7 @@ function creaTarjetaReceta(data) {
     div_card.addEventListener('click', function () {
         let card_modal = document.createElement("div");
         card_modal.classList.add("modal-content");
-        document.querySelector("#section_lista").appendChild(card_modal);
+        document.querySelector("#section_titulo").appendChild(card_modal);
         console.log("click en card");
         console.log(div_card);
         //aparece un modal

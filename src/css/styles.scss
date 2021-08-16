@@ -84,7 +84,6 @@ body{
         #section_buscar{
             flex-basis: 100%;
             margin: 25px auto;
-            height: 700px;
             .baner-imagen{
                 z-index: -1;
                 margin-bottom: -50px;
@@ -140,23 +139,120 @@ body{
                     box-shadow: 1px 1px 20px white ;
                 }
             }
-            .receta-sorpresa-container{
+            #div_recipe_random{
                 width: 40%;
-                
+                display: flex;
+                justify-content: center;
                 .receta-sorpresa{
                     max-width: 300px;
                 }
             }
            
         }
+        #section_titulo{
+            #title_section_lista{
+                flex-basis: 100%;
+            }
+            #modal {
+                display: none;
+                position: fixed;
+                z-index: 3;
+                padding-top: 100px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, 0.9);
+                cursor: pointer;
+            }
+            
+            
+            .modal-content {
+                position: fixed;
+                cursor:initial;
+                background-color: white;
+                z-index: 4;
+                margin: auto;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                width: 80%;
+                height: 88%; 
+                display: none;
+                top: 6%;
+                left: 10%;
+                animation-name: modal-open ;
+                animation-duration: 300ms;
+                animation-timing-function: linear;
+                #image-title-modal{
+                    width: 97%;
+                    margin: 20px;
+                    img{
+                        width: 100%;
+                        max-height: 500px;
+                        box-shadow: 0px 0px 5px black;
+                    }
+                    h1{
+                        text-align: center;
+                        margin-top: 20px;
+                        text-shadow: 0px 0px 30px black;
+                    }
+                    h4{
+                        text-align: center;
+                    }
+                }
+                #body-info-modal{
+                    width: 95%;
+                    margin: 20px ;
+                    h2{
+                        margin-top: 0px;
+                        text-shadow: 0px 0px 30px black;
+                    }
+                    ul{
+                        display: grid;
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+                    p{
+                        text-align: justify;
+                        margin-right: 10px;
+                    }
+                }
+    
+            } 
+    
+            
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+            
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            
+    
+        }
         #section_lista{
             flex-basis: 100%;
             display: flex;
             min-height: 223px;
-            justify-content: space-between;
+            justify-content: center;
             flex-direction: row;
             flex-wrap: wrap;
             margin-bottom: 3%;
+            .card{
+                flex-basis: 19%;
+                margin: 6px;
+            }
         }
 
         
@@ -212,93 +308,7 @@ body{
             z-index: 2;
             box-shadow: 0px 0px 100px black;
         }
-        #modal {
-            display: none;
-            position: fixed;
-            z-index: 3;
-            padding-top: 100px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgb(0, 0, 0);
-            background-color: rgba(0, 0, 0, 0.9);
-            cursor: pointer;
-        }
         
-        
-        .modal-content {
-            position: fixed;
-            cursor:initial;
-            background-color: white;
-            z-index: 4;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            width: 80%;
-            height: 88%; 
-            display: none;
-            top: 6%;
-            left: 10%;
-            animation-name: modal-open ;
-            animation-duration: 300ms;
-            animation-timing-function: linear;
-            #image-title-modal{
-                width: 97%;
-                margin: 20px;
-                img{
-                    width: 100%;
-                    max-height: 500px;
-                    box-shadow: 0px 0px 5px black;
-                }
-                h1{
-                    text-align: center;
-                    margin-top: 20px;
-                    text-shadow: 0px 0px 30px black;
-                }
-                h4{
-                    text-align: center;
-                }
-            }
-            #body-info-modal{
-                width: 95%;
-                margin: 20px ;
-                h2{
-                    margin-top: 0px;
-                    text-shadow: 0px 0px 30px black;
-                }
-                ul{
-                    display: grid;
-                    grid-template-columns: repeat(2, 1fr);
-                }
-                p{
-                    text-align: justify;
-                    margin-right: 10px;
-                }
-            }
-
-        } 
-
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        
-        .close:hover,
-        .close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-
     }
     #footer{
         font-family: "WebSymbolsRegular";
