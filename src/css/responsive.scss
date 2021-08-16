@@ -25,6 +25,9 @@
                    margin-bottom: 10px;
                }
            }
+           .card{
+               flex-basis: 46% !important;
+           }
        }
    }
 }
@@ -62,6 +65,10 @@
                        margin-right: 0px;
                    }
                 }
+            }
+            .card{
+                margin: 0px !important;
+                flex-basis: 100% !important;
             }
         }
     }
