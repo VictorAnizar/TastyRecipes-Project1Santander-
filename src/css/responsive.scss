@@ -30,6 +30,10 @@
 }
 
 @media (max-width: 575px){
+    #header{
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
     #main{
         margin-left: 20px !important;
         margin-right: 20px !important;
@@ -60,5 +64,11 @@
                 }
             }
         }
+    }
+    #footer{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        height: auto !important;
+        justify-content: center !important;
     }
  }
