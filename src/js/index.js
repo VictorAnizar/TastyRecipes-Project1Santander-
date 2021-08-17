@@ -1,16 +1,15 @@
 import { get } from "jquery";
 import "../css/styles.scss";
-//funcion "main"
-
 import backgroundModal from '../svg/wave.svg';
-console.log(backgroundModal);
+
+//funcion "main"
 window.addEventListener('load', function () {
-
-
-
-
-
-
+    setTimeout(() => {
+        setTimeout(() => {
+            document.querySelector("#box_loader").style.display="none";
+        }, 300);
+        document.querySelector("#box_loader").classList.add("closed_opacity");
+    }, 2000);
 
     //Generacion de Componentes al abrir la página
     (crearFilaRecetas());
@@ -27,6 +26,12 @@ window.addEventListener('load', function () {
 
 
 
+    logicaBuscador();
+
+});
+
+function logicaBuscador(){
+    
     let search_input = document.querySelector("#search_input");
     let btn_buscar = document.querySelector("#btn_buscar");
 
@@ -167,8 +172,8 @@ window.addEventListener('load', function () {
 
         }
     });
+}
 
-});
 function escuchadoresCloseModal() {
     //listeners o escuchadores que estan a la espera de cerrar el modal
     let modal = document.querySelector("#modal");
