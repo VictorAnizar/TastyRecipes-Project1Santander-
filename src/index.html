@@ -1,18 +1,84 @@
 <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <!-- Compiled and minified CSS Materialize -->
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-            <!-- Compiled and minified JavaScript -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            <title>Proyecto Recetas</title>
-        </head>
-    <body>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Proyecto Recetas</title>
+</head>
+
+<body>
+    <nav id="header" class=" fixed-top ">
         
-        <h1>Recetas</h1>
-    
-    </body>
+        <a href="index.html">
+            <div id="logo">
+                <img src="<%=require('./svg/611-toque-cooking-hat-outline66.svg')%>"
+                    alt="imagen de persona con gorrito de chef">
+            </div>
+        </a>
+        <ul id="menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+
+    </nav>
+    <main id="main">
+        <section id="section_buscar" class="row">
+            <div class="col ">
+                <h1>Granny's Recipes</h1>
+
+                <div id="form-fake" class="d-flex justify-content-center">
+                    <label for="search">L</label>
+                    <input type="text" name="search" id="search_input">
+                    <button type="submit" class="btn btn-primary btn-lg" id="btn_buscar">Buscar</button>
+                    <button class="btn btn-primary btn-lg" id="btn_random">Receta Aleatoria</button>
+                </div>
+                <div id="div_recipe_random" class="receta-sorpresa-container">
+                    <div class="receta-sorpresa "></div>
+                </div>
+            </div>
+            <div class="col baner-imagen fixed-top ">
+                <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>" alt="imagen de persona con gorrito de chef">
+            </div>
+        </section>
+        <section id="section_titulo">
+            <h1 id="title_section_lista">Lo más destacado</h1>
+            <div id="modal">
+                <span class="close">&times;</span>
+            </div>
+        </section>
+        <section id="section_lista" class="container-fluid container-recipes">
+            
+            <!-- Estructura base de tarjetas
+                 <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+             -->
+        </section>
+    </main>
+    <footer id="footer">
+        <div>f</div>
+        <div>l</div>
+        <div>y</div>
+        <div>_</div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+</body>
+
 </html>

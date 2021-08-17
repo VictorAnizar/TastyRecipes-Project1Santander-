@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: './src/js/index.js',//lee el archivo js
     output: {
-        path: path.resolve(__dirname, 'dist'),//construye esta carpeta 
+        path: path.resolve(__dirname, 'docs'),//construye esta carpeta 
         filename: 'bundle.js',//arcchivo empaquetado
-        assetModuleFilename: 'images/[hash][ext][query]'
+        assetModuleFilename: 'assets/[hash][ext][query]'
     }, 
     plugins: [ //se usa un plugin para leer html
         new HtmlWebpackPlugin({
@@ -26,6 +26,13 @@ module.exports = {
                     // Compiles Sass to CSS
                     "sass-loader",
                   ]//usa estos loaders
+            },
+            {
+                test: /\.svg/,
+                use: {
+                  loader: "svg-url-loader",
+                  options: {},
+                },
             },
             {
                 test: /\.m?js$/,
