@@ -1,29 +1,26 @@
-@keyframes rotate-gear{
-    from{
+@keyframes rotate-gear {
+    from {
         transform: rotateZ(0deg);
     }
-    to{
+    to {
         transform: rotateZ(360deg);
     }
 }
 
-
-@keyframes modal-open{
-    from{
+@keyframes modal-open {
+    from {
         transform: scale(0);
     }
-    to{
+    to {
         transform: scale(1);
     }
 }
 
-
-@keyframes modal-close{
-    from{
+@keyframes modal-close {
+    from {
         transform: scale(1);
     }
-    to{
+    to {
         transform: scale(0);
     }
-} 
-
+}
