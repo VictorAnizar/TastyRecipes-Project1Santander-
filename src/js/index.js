@@ -1,6 +1,9 @@
 import { get } from "jquery";
 import "../css/styles.scss";
 //funcion "main"
+
+import backgroundModal from '../svg/wave.svg';
+console.log(backgroundModal);
 window.addEventListener('load', function () {
 
 
@@ -19,7 +22,7 @@ window.addEventListener('load', function () {
     //Cargamos la primer receta Sorpresa
     recetaSorpresa();
     escuchadoresCloseModal();
-
+    
 
 
 
@@ -144,9 +147,11 @@ window.addEventListener('load', function () {
                                         <p>${data.meals[index].strInstructions}<p/>
                                     </div>`
                                 );
+                                
+
                                 document.querySelector(".modal-content").style.animationName = ("modal-open");
                             });
-
+                            
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
                     }
@@ -229,12 +234,12 @@ function crearFilaRecetas() {
     const card = [];
     for (let i = 0; i < 5; i++) {
 
-        getRecetaRandom()
-            .then(
-                data => {
-                    return creaTarjetaReceta(data);
-                }
-            )
+            getRecetaRandom()
+                .then(
+                    data => {
+                        return creaTarjetaReceta(data);
+                    }
+                )
             .then(function (div_card) {
 
                 //Creamos un nuevo div que funciona como celda
@@ -334,7 +339,8 @@ function creaTarjetaReceta(data) {
         }
         arrIngredientes.push("</ul>")
         // arrIngredientes=arrIngredientes.join();
-        document.querySelector(".modal-content").innerHTML = (
+        const modalActive= document.querySelector(".modal-content");
+        modalActive.innerHTML = (
             `<div id="image-title-modal">
             <img src="${data.meals[0].strMealThumb}"/>
             <h1>
@@ -351,7 +357,10 @@ function creaTarjetaReceta(data) {
                 <p>${data.meals[0].strInstructions}<p/>
             </div>`
         );
-        document.querySelector(".modal-content").style.animationName = ("modal-open");
+        modalActive.style.animationName = ("modal-open");
+        modalActive.style.backgroundImage = 'url("'+backgroundModal+'")';
+        modalActive.style.backgroundRepeat = 'no-repeat';
+        modalActive.style.backgroundPosition = 'bottom';
     });
     return div_card;
 }
