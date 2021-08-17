@@ -1,123 +1,123 @@
-@media (max-width: 1000px) {
-    #main {
-        #section_buscar {
-            .col {
-                h1 {
-                    text-align: center;
-                }
-                #form-fake {
-                    width: 100%;
-                }
-                #div_recipe_random {
-                    width: 100%;
-                }
-            }
-        }
-        #section_titulo {
-            text-align: center;
-            width: 100%;
-            .modal-content {
+@media (max-width: 1000px){
+   #main{
+       #section_buscar{
+           .col{
+               h1{
+                   text-align: center;
+               }
+               #form-fake{
+                   width: 100%;
+               }
+               #div_recipe_random{
+                   width: 100%;
+               }
+           }
+       }
+       #section_titulo{
+           text-align: center;
+           width: 100%;
+           .modal-content{
                 grid-template-columns: none !important;
                 grid-template-rows: repeat(2, 1fr) !important;
                 overflow: scroll !important;
-                #image-title-modal {
+                #image-title-modal{
                     margin: 20px auto !important;
-                    img {
+                    img{
                         width: 95% !important;
                     }
                 }
-                #body-info-modal {
+                #body-info-modal{
                     margin: 20px auto !important;
-                    ul {
+                    ul{
                         list-style: none !important;
                         padding: 0 !important;
                     }
-                    p {
+                    p{
                         margin-right: 0 !important;
                     }
                 }
-            }
-        }
-        #section_lista {
-            .row {
-                div {
-                    flex-basis: 30%;
-                    margin-top: 10px;
-                    margin-bottom: 10px;
-                }
-            }
-            .card {
-                flex-basis: 46% !important;
-            }
-        }
-    }
+           }
+       }
+       #section_lista{
+           .row{
+               div{
+                   flex-basis: 30%;
+                   margin-top: 10px;
+                   margin-bottom: 10px;
+               }
+           }
+           .card{
+               flex-basis: 46% !important;
+           }
+       }
+   }
 }
 
-@media (max-width: 575px) {
-    #header {
+@media (max-width: 575px){
+    #header{
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
-    #main {
+    #main{
         margin-left: 20px !important;
         margin-right: 20px !important;
-        #section_buscar {
-            .col {
+        #section_buscar{
+            .col{
                 width: 100%;
-                #form-fake {
-                    label {
+                #form-fake{
+                    label{
                         left: 8%;
                     }
                 }
-                #div_recipe_random {
+                #div_recipe_random{
                     .receta-sorpresa {
                         max-width: none;
                     }
                 }
             }
         }
-
-        #section_titulo {
-            #modal {
-                .close {
+        
+        #section_titulo{
+            #modal{
+                .close{
                     right: 10px !important;
                 }
             }
-            .modal-content {
-                #body-info-modal {
-                    ul {
+            .modal-content{
+                 #body-info-modal{
+                     ul{
                         padding: 0 !important;
-                        list-style: square !important;
+                        list-style:square !important;
                         grid-template-columns: none !important;
-                    }
-                    p {
+                     }
+                     p{
                         margin-right: 0 !important;
-                    }
-                }
+                     }
+                 }
             }
         }
 
-        #section_lista {
-            .row {
-                div {
-                    width: 100%;
-                    .card {
-                        margin-left: 0px;
-                        margin-right: 0px;
-                    }
+        #section_lista{
+            .row{
+                div{
+                   width: 100%;
+                   .card{
+                       margin-left: 0px;
+                       margin-right: 0px;
+                   }
                 }
             }
-            .card {
+            .card{
                 margin-left: 0px !important;
                 margin-right: 0px !important;
                 flex-basis: 100% !important;
             }
         }
     }
-    #footer {
+    #footer{
         padding-left: 0px !important;
         padding-right: 0px !important;
         height: auto !important;
         justify-content: center !important;
     }
-}
+ }
