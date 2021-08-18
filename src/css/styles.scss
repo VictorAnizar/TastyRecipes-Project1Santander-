@@ -491,6 +491,22 @@ img {
   }
   }
 }
+#section_titulo_categorias{
+    h1{
+        text-align: center;
+    }
+}
+#section_categorias{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .templateone{
+        &__data{
+
+        margin: 20px 10px;
+      }
+      }
+}
+
 .receta-sorpresa-container{
   display: flex;
   justify-content: center;

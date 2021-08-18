@@ -1,218 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- === Meta ===-->
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <!--====== Box Icons ======-->
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
 
     <!--====== Fonts ======-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Lato:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet" />
 
 
     <title>Tasty Recipes</title>
     <!--====== Favicon ======-->
-    <link
-      rel="shortcut icon"
-      href="./index.html"
-      type="image/png"
-      alt="Tasty Recipe Logo"
-    />
-  </head>
-  <body>
-      
+    <link rel="shortcut icon" href="./index.html" type="image/png" alt="Tasty Recipe Logo" />
+</head>
+
+<body>
+
     <div id="box_loader">
         <div class="loader"></div>
     </div>
     <!--========== SCROLL TOP ==========-->
     <a href="#" class="scrolltop" id="scroll-top">
-      <i class="bx bx-up-arrow-alt scrolltop__icon"></i>
+        <i class="bx bx-up-arrow-alt scrolltop__icon"></i>
     </a>
 
     <!--========== HEADER ==========-->
     <header class="l-header" id="header">
-      <nav class="nav bd-container">
-        <a href="#" class="nav__logo">Tasty Recipes</a>
+        <nav class="nav bd-container">
+            <a href="#" class="nav__logo">Tasty Recipes</a>
 
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="./index.html" class="nav__link active-link">Inicio</a>
-            </li>
-            <li class="nav__item">
-              <a href="#footer" class="button">Contacto</a>
-            </li>
-            <li>
-              <i class="bx bx-toggle-left change-theme" id="theme-button"></i>
-            </li>
-          </ul>
-        </div>
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="./index.html" class="nav__link active-link">Inicio</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#footer" class="button">Contacto</a>
+                    </li>
+                    <li>
+                        <i class="bx bx-toggle-left change-theme" id="theme-button"></i>
+                    </li>
+                </ul>
+            </div>
 
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="bx bx-grid-alt"></i>
-        </div>
-      </nav>
+            <div class="nav__toggle" id="nav-toggle">
+                <i class="bx bx-grid-alt"></i>
+            </div>
+        </nav>
     </header>
 
     <main class="l-main">
-      <!--========== HOME ==========-->
-      <section class="home" id="home">
-        <div class="home__container bd-container bd-grid">
-          <div class="home__img">
-            <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>" alt="imagen de persona con gorrito de chef" />
-          </div>
+        <!--========== HOME ==========-->
+        <section class="home" id="home">
+            <div class="home__container bd-container bd-grid">
+                <div class="home__img">
+                    <img src="<%=require('./svg/undraw_cooking_lyxy.svg')%>"
+                        alt="imagen de persona con gorrito de chef" />
+                </div>
 
-          <div class="home__data">
-            <h1 class="home__title">Las mejores recetas de cocina</h1>
-            <p class="home__description">
-              ¿No sabes qué cocinar?
-              Decenas de exquisitas recetas te esperan a tan solo una busqueda.
-            </p>
-            
-            <input type="text" name="search" id="search_input">
-            <a href="#" class="button" id="btn_buscar"
-              >Buscar receta <i class="bx bxs-search"></i
-            ></a>
-          </div>
-        </div>
-      </section>
+                <div class="home__data">
+                    <h1 class="home__title">Las mejores recetas de cocina</h1>
+                    <p class="home__description">
+                        ¿No sabes qué cocinar?
+                        Decenas de exquisitas recetas te esperan a tan solo una busqueda.
+                    </p>
 
-      <!--========== Random ==========-->
-      <section class="random section bd-container" id="random">
-        <div class="random__container bd-grid">
-          <div class="random__data">
-            <h2 class="section-title-center">
-              ¡Dale un vistazo <br />
-              a la receta del día!
-            </h2>
-            <p class="random__description">
-              Cada día te traeremos una diferente. <i class='bx bx-happy-beaming'></i>
-            </p>
-            <a href="#" class="button" id="btn_random"
-              >Receta Aleatoria <i class="bx bxs-search"></i
-            ></a>
-          </div>
-          
-          <div id="div_recipe_random" class="receta-sorpresa-container">
-            <div class="receta-sorpresa "></div>
-        </div>
-      </section>
+                    <input type="text" name="search" id="search_input">
+                    <a href="#" class="button" id="btn_buscar">Buscar receta <i class="bx bxs-search"></i></a>
+                </div>
+            </div>
+        </section>
 
-      <!--========== Template One for Cards ==========-->
-      
-      <section id="section_titulo">
-        <h1 id="title_section_lista">Lo más destacado</h1>
-        <div id="modal">
-            <span class="close">&times;</span>
-        </div>
-    </section>
-      <section class="templateone section bd-container " id="section_lista">
-      </section>
+        <!--========== Random ==========-->
+        <section class="random section bd-container" id="random">
+            <div class="random__container bd-grid">
+                <div class="random__data">
+                    <h2 class="section-title-center">
+                        ¡Dale un vistazo <br />
+                        a la receta del día!
+                    </h2>
+                    <p class="random__description">
+                        Cada día te traeremos una diferente. <i class='bx bx-happy-beaming'></i>
+                    </p>
+                    <a href="#" class="button" id="btn_random">Receta Aleatoria <i class="bx bxs-search"></i></a>
+                </div>
+
+                <div id="div_recipe_random" class="receta-sorpresa-container">
+                    <div class="receta-sorpresa "></div>
+                </div>
+        </section>
+
+        <!--========== Template One for Cards ==========-->
+
+        <section id="section_titulo">
+            <h1 id="title_section_lista">Lo más destacado</h1>
+            <div id="modal">
+                <span class="close">&times;</span>
+            </div>
+        </section>
+        <section class="templateone section bd-container " id="section_lista">
+        </section>
+        <section id="section_titulo_categorias">
+            <h1>Categorías</h1>
+        </section>
+        <section id="section_categorias" class="templateone section bd-container "></section>
     </main>
 
     <!--========== FOOTER ==========-->
     <footer class="footer section" id="#footer">
-      <div class="footer__container bd-container bd-grid">
-        <div class="footer__content">
-          <h3 class="footer__title">
-            <a href="index.html" class="footer__logo">Tasty Recipes</a>
-          </h3>
-          <p class="footer__description">
-            Encuentra las mejores <br />
-            recetas de cocina
-          </p>
-          <img src="./favicon.png" />
+        <div class="footer__container bd-container bd-grid">
+            <div class="footer__content">
+                <h3 class="footer__title">
+                    <a href="index.html" class="footer__logo">Tasty Recipes</a>
+                </h3>
+                <p class="footer__description">
+                    Encuentra las mejores <br />
+                    recetas de cocina
+                </p>
+                <img src="./favicon.png" />
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Navegación</h3>
+                <ul>
+                    <li>
+                        <a href="#" class="footer__link"><i class="bx bx-home-alt"></i> Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link"><i class="bx bxs-contact"></i> Contacto</a>
+                    </li>
+                    <li>
+                        <a href="#" class="footer__link"><i class="bx bx-restaurant"></i> Destacados</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Soporte</h3>
+                <ul>
+                    <li>
+                        <a href="https://github.com/VictorAnizar" target="_blank" class="footer__link"><i
+                                class='bx bxs-phone'></i> (+52) 56 1439 5238</a>
+                    </li>
+                    <li>
+                        <a href="mailto:soporte@tastyrecipes.com" target="_blank" class="footer__link"><i
+                                class="bx bxs-envelope"></i> soporte@tasty.com</a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank" class="footer__link"><i class='bx bxl-facebook-circle'></i> Tasty
+                            Recipes </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer__content">
+                <h3 class="footer__title">Redes</h3>
+                <a href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2" class="footer__social"><i
+                        class="bx bxl-github"></i></a>
+                <a href="mailto:delysidmorning@gmail.com" class="footer__social"><i class="bx bxs-envelope"></i></a>
+                <a href="https://www.themealdb.com/api.php" class="footer__social"><i class="bx bx-code-curly"></i></a>
+            </div>
         </div>
 
-        <div class="footer__content">
-          <h3 class="footer__title">Navegación</h3>
-          <ul>
-            <li>
-              <a href="#" class="footer__link"
-                ><i class="bx bx-home-alt"></i> Inicio</a
-              >
-            </li>
-            <li>
-              <a href="#" class="footer__link"
-                ><i class="bx bxs-contact"></i> Contacto</a
-              >
-            </li>
-            <li>
-              <a href="#" class="footer__link"
-                ><i class="bx bx-restaurant"></i> Destacados</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__content">
-          <h3 class="footer__title">Soporte</h3>
-          <ul>
-            <li>
-              <a
-                href="https://github.com/VictorAnizar"
-                target="_blank"
-                class="footer__link"
-                ><i class='bx bxs-phone'></i> (+52) 56 1439 5238</a
-              >
-            </li>
-            <li>
-              <a
-                href="mailto:soporte@tastyrecipes.com"
-                target="_blank"
-                class="footer__link"
-                ><i class="bx bxs-envelope"></i> soporte@tasty.com</a
-              >
-            </li>
-            <li>
-              <a
-                href=""
-                target="_blank"
-                class="footer__link"
-                ><i class='bx bxl-facebook-circle'></i> Tasty Recipes </a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div class="footer__content">
-          <h3 class="footer__title">Redes</h3>
-          <a
-            href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2"
-            class="footer__social"
-            ><i class="bx bxl-github"></i
-          ></a>
-          <a href="mailto:delysidmorning@gmail.com" class="footer__social"
-            ><i class="bx bxs-envelope"></i
-          ></a>
-          <a href="https://www.themealdb.com/api.php" class="footer__social"
-            ><i class="bx bx-code-curly"></i
-          ></a>
-        </div>
-      </div>
-
-      <p class="footer__copy">
-        Este proyecto fue realizado por el
-        <b
-          ><a href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2"
-            >Dream Team</a
-          ></b
-        >
-        de BEDU.
-      </p>
+        <p class="footer__copy">
+            Este proyecto fue realizado por el
+            <b><a href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2">Dream Team</a></b>
+            de BEDU.
+        </p>
     </footer>
-  </body>
+</body>
+
 </html>
