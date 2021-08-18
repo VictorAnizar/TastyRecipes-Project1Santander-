@@ -22,6 +22,7 @@ window.addEventListener('load', function () {
                 let section_categoraias = document.querySelector("#section_categorias");
                 for (let iterator = 0; iterator < data.categories.length; iterator++) {
                     section_categoraias.append(
+                        //se listam las categorias
                         creaTarjetaReceta(data, data.categories[iterator].strCategory,
                     data.categories[iterator].strCategoryThumb, data.categories[iterator].strCategoryDescription, iterator, "categoria")
                     );
@@ -234,15 +235,15 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
             h2_modal.append(nombre);
             let arrIngredientes = [];
             arrIngredientes.push("<ul>")
-            for (let index = 1; index <= 20; index++) {
+            // for (let index = 1; index <= 20; index++) {
 
-                if (data.meals[iterator]["strIngredient" + index] == "" || data.meals[iterator]["strIngredient" + index] == null) {
-                    continue
-                } else {
-                    arrIngredientes.push("<li>" + " " + data.meals[iterator]["strIngredient" + index] + " ( " + data.meals[iterator]["strMeasure" + index] + " ) </li>");
-                }
+            //     if (data.meals[iterator]["strIngredient" + index] == "" || data.meals[iterator]["strIngredient" + index] == null) {
+            //         continue
+            //     } else {
+            //         arrIngredientes.push("<li>" + " " + data.meals[iterator]["strIngredient" + index] + " ( " + data.meals[iterator]["strMeasure" + index] + " ) </li>");
+            //     }
 
-            }
+            // }
             arrIngredientes.push("</ul>")
             // arrIngredientes=arrIngredientes.join();
             const modalActive = document.querySelector(".modal-content");
@@ -274,15 +275,15 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
             .then(
                 data => {
                     console.log("Elegido "+ nombre);
-                    console.log(data);
                     document.querySelector("#title_section_lista").innerHTML = " " + data.meals.length + " resultados para \"" + nombre + "\"";
                         for (let index = 0; index < data.meals.length; index++) {
                             /* creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicador) */
-                            
-                            const div_card = creaTarjetaReceta(
-                                fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+(data.meals[index].strMeal)).then((data) => data.json())
+                            console.log("Creando tarjeta receta");
+                            console.log(data);
+                            fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+(data.meals[index].strMeal)).then((data) => data.json().then(data => data =data))
+                            const div_card = creaTarjetaReceta(data
                                 ,data.meals[index].strMeal,
-                                data.meals[index].strMealThumb, nombre, index, "receta");
+                                data.meals[index].strMealThumb, nombre, 0, "receta");
                                 
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
