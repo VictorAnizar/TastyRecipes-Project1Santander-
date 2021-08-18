@@ -1,5 +1,7 @@
 import { get } from "jquery";
 import "../css/styles.scss";
+
+import './main.js';
 import backgroundModal from '../svg/wave.svg';
 
 //funcion "main"
@@ -27,6 +29,7 @@ window.addEventListener('load', function () {
 
 
     logicaBuscador();
+    activarEschuchaDark();
 
 });
 
@@ -41,22 +44,16 @@ function logicaBuscador(){
 
             setTimeout(() => {
                 document.querySelector("#btn_random").style.display = "none";
-                document.querySelector("#div_recipe_random").style.display = "none";
+                document.querySelector("#random").style.display = "none";
             }, 300);
             document.querySelector("#btn_random").classList.add("closed");
             document.querySelector("#div_recipe_random").classList.add("closed");
 
-            
-            let sectionLista = document.querySelector("#section_lista");
-
-            sectionLista.innerHTML = '<hr>';
 
             getRecetaSearch(search_input.value)
                 .then(
                     data => {
                         document.querySelector("#title_section_lista").innerHTML = " "+data.meals.length+" resultados para \"" + search_input.value + "\"";
-                        document.querySelector("#footer").style.position="";
-                        document.querySelector("#footer").style.bottom="";
                         for (let index = 0; index < data.meals.length; index++) {
                             const div_card =creaTarjetaReceta(data,index);
                             document.querySelector("#section_lista").appendChild(div_card);
@@ -65,8 +62,6 @@ function logicaBuscador(){
                 )
                 .catch(
                     () =>  {
-                        document.querySelector("#footer").style.position="fixed";
-                        document.querySelector("#footer").style.bottom="0";
                         document.querySelector("#title_section_lista").innerHTML = "No se encontraron resultados para \"" + search_input.value + "\"";
                     }
                 );
@@ -104,6 +99,7 @@ function recetaSorpresa() {
             const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
             recetaSorpresaAleatoria.innerHTML = '';
             recetaSorpresaAleatoria.appendChild(div_card);
+            console.log(div_card);
         });
 
 }
@@ -136,10 +132,7 @@ function getRecetaSearch(search_input_value) {
 
 //Funcion para crear filas ordenadas de 5 columnas
 function crearFilaRecetas() {
-    const div_row = document.createElement("div");
-    div_row.classList.add("row");
-    const card = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 12; i++) {
 
             getRecetaRandom()
                 .then(
@@ -148,25 +141,9 @@ function crearFilaRecetas() {
                     }
                 )
             .then(function (div_card) {
-
-                //Creamos un nuevo div que funciona como celda
-                const div_col = document.createElement("div");
-                div_col.classList.add("col", "container-box-padding");
-                //Añadimos la tarjeta que recibimos a un nuevo div que funciona como celda
-                div_col.appendChild(div_card);
-                //Añadimos la nueva celda a la fila
-                div_row.appendChild(div_col);
-                //Enviamos la fila
-                document.querySelector("#section_lista").appendChild(div_row);
-                return div_card;
-            })
-            .then(
-                div_card => {
-                    card.push(div_card);
-                }
-            );
+                document.querySelector("#section_lista").appendChild(div_card);
+            });
     }
-    return card;
 
 }
 
@@ -179,39 +156,28 @@ function creaTarjetaReceta(data, iterator) {
     //se ccrea el elemento div
     let div_card = document.createElement("div");
     //se le agrega la clase al elemento div creado
-    div_card.classList.add("card");
+    div_card.classList.add("templateone__data");
     //se crea un elemento imagen
     let img_card = document.createElement("img");
+    
+    img_card.classList.add("templateone__img");
     img_card.src = data.meals[iterator].strMealThumb;
-    //se le agregan clases a la imagen
-    img_card.classList.add("card-img-top");
-    //se introduce como hijo la imagen al div creado
     div_card.appendChild(img_card);
-    //se crea el div del cuerpo de la tarjeta
-    let div_body = document.createElement("div");
-    //se le agrega la clase
-    div_body.classList.add("card-body");
-    //se introduce como hijo el div_body al div_card
-    div_card.appendChild(div_body);
-    //Se crea un div para el titulo
-    let div_title = document.createElement("div");
-    //se le agrega la clase
-    div_title.classList.add("card-title");
     //se crea el titulo
-    let h5 = document.createElement("h5");
+    let h3 = document.createElement("h3");
     //se le agrega el nombre de la comda al titulo
-    h5.append(data.meals[iterator].strMeal);
+    h3.append(data.meals[iterator].strMeal);
     //se agrega el titulo como hijo de div_title
-    div_title.appendChild(h5);
+    
+    h3.classList.add("templateone__title");
+    div_card.appendChild(h3);
     //se agrega div_title como hijo de div_body
-    div_body.appendChild(div_title);
-    //se crea el parafo de la comida
     let p = document.createElement("p");
     p.append("Categoría: " + data.meals[iterator].strCategory);
     //se agregan las clases al parrafo
     p.classList.add("card-text");
     //se agrega el parrafo como hijo del div_body
-    div_body.appendChild(p);
+    div_card.appendChild(p);
     //se genera un Listener para la tarjeta
 
     div_card.addEventListener('click', function () {
