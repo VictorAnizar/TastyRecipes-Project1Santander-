@@ -58,105 +58,7 @@ function logicaBuscador(){
                         document.querySelector("#footer").style.position="";
                         document.querySelector("#footer").style.bottom="";
                         for (let index = 0; index < data.meals.length; index++) {
-                            console.log(data);
-                            //se ccrea el elemento div
-                            let div_card = document.createElement("div");
-                            //se le agrega la clase al elemento div creado
-                            div_card.classList.add("card");
-                            //se crea un elemento imagen
-                            let img_card = document.createElement("img");
-                            img_card.src = data.meals[index].strMealThumb;
-                            //se le agregan clases a la imagen
-                            img_card.classList.add("card-img-top");
-                            //se introduce como hijo la imagen al div creado
-                            div_card.appendChild(img_card);
-                            //se crea el div del cuerpo de la tarjeta
-                            let div_body = document.createElement("div");
-                            //se le agrega la clase
-                            div_body.classList.add("card-body");
-                            //se introduce como hijo el div_body al div_card
-                            div_card.appendChild(div_body);
-                            //Se crea un div para el titulo
-                            let div_title = document.createElement("div");
-                            //se le agrega la clase
-                            div_title.classList.add("card-title");
-                            //se crea el titulo
-                            let h5 = document.createElement("h5");
-                            //se le agrega el nombre de la comda al titulo
-                            h5.append(data.meals[index].strMeal);
-                            // console.log(data.meals[index].strMeal.toLowerCase().indexOf(search_input.value.toString()));
-                           
-                            //se agrega el titulo como hijo de div_title
-                            div_title.appendChild(h5);
-                            //se agrega div_title como hijo de div_body
-                            div_body.appendChild(div_title);
-                            //se crea el parafo de la comida
-                            let p = document.createElement("p");
-                            p.append("Categoría: " + data.meals[index].strCategory);
-                            //se agregan las clases al parrafo
-                            p.classList.add("card-text");
-                            //se agrega el parrafo como hijo del div_body
-                            div_body.appendChild(p);
-                            //se genera un Listener para la tarjeta
-                            div_card.style.animationName="modal-open";
-                            div_card.style.animationDuration="300ms";
-                            div_card.style.animationTimingFunction="linear";
-                
-
-                            div_card.addEventListener('click', function () {
-                                let card_modal = document.createElement("div");
-                                card_modal.classList.add("modal-content");
-                                document.querySelector("#section_titulo").appendChild(card_modal);
-                                console.log("click en card");
-                                console.log(div_card);
-                                //aparece un modal
-                                modal.style.display = "block";
-                                document.querySelector(".modal-content").style.display = "grid";
-
-                                //se genera la imagen
-                                //se crea un elemento imagen
-                                let img_modal = document.createElement("img");
-                                img_modal.src = data.meals[index].strMealThumb;
-
-                                //se genera el titulo
-                                let h2_modal = document.createElement("h2");
-                                h2_modal.append(data.meals[index].strMeal);
-
-                                let arrIngredientes = [];
-                                arrIngredientes.push("<ul>")
-                                for (let jindex = 1; jindex <= 20; jindex++) {
-
-                                    if (data.meals[index]["strIngredient" + jindex] == "" || data.meals[index]["strIngredient" + jindex] == null) {
-                                        continue
-                                    } else {
-                                        arrIngredientes.push("<li>" + " " + data.meals[index]["strIngredient" + jindex] + " ( " + data.meals[index]["strMeasure" + jindex] + " ) </li>");
-                                    }
-
-                                }
-                                arrIngredientes.push("</ul>")
-                                // arrIngredientes=arrIngredientes.join();
-                                document.querySelector(".modal-content").innerHTML = (
-                                    `<div id="image-title-modal">
-                                    <img src="${data.meals[index].strMealThumb}"/>
-                                    <h1>
-                                    ${data.meals[index].strMeal} 
-                                    </h1>
-                                    <h4>
-                                        Categoría: ${data.meals[index].strCategory}
-                                    </h4>
-                                    </div>
-                                    <div id="body-info-modal">
-                                        <h2>Ingredientes</h2>
-                                        ${arrIngredientes.toString().replaceAll(",", "")}
-                                        <h2>Instrucciones</h2>
-                                        <p>${data.meals[index].strInstructions}<p/>
-                                    </div>`
-                                );
-                                
-
-                                document.querySelector(".modal-content").style.animationName = ("modal-open");
-                            });
-                            
+                            const div_card =creaTarjetaReceta(data,index);
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
                     }
@@ -195,7 +97,7 @@ function recetaSorpresa() {
     getRecetaRandom()
         .then(
             data => {
-                return creaTarjetaReceta(data);
+                return creaTarjetaReceta(data,0);
             }
         )
         .then(function (div_card) {
@@ -242,7 +144,7 @@ function crearFilaRecetas() {
             getRecetaRandom()
                 .then(
                     data => {
-                        return creaTarjetaReceta(data);
+                        return creaTarjetaReceta(data,0);
                     }
                 )
             .then(function (div_card) {
@@ -272,7 +174,7 @@ function crearFilaRecetas() {
 //funcion que crea una tarjeta de receta y la agrega al div de recectas 
 //la creacion de esta tarjeta esta basada en las tarjetas que nos ofrece bootstrap
 //las clases que se agregan son las que usa Bootstrap
-function creaTarjetaReceta(data) {
+function creaTarjetaReceta(data, iterator) {
     console.log(data);
     //se ccrea el elemento div
     let div_card = document.createElement("div");
@@ -280,7 +182,7 @@ function creaTarjetaReceta(data) {
     div_card.classList.add("card");
     //se crea un elemento imagen
     let img_card = document.createElement("img");
-    img_card.src = data.meals[0].strMealThumb;
+    img_card.src = data.meals[iterator].strMealThumb;
     //se le agregan clases a la imagen
     img_card.classList.add("card-img-top");
     //se introduce como hijo la imagen al div creado
@@ -298,14 +200,14 @@ function creaTarjetaReceta(data) {
     //se crea el titulo
     let h5 = document.createElement("h5");
     //se le agrega el nombre de la comda al titulo
-    h5.append(data.meals[0].strMeal);
+    h5.append(data.meals[iterator].strMeal);
     //se agrega el titulo como hijo de div_title
     div_title.appendChild(h5);
     //se agrega div_title como hijo de div_body
     div_body.appendChild(div_title);
     //se crea el parafo de la comida
     let p = document.createElement("p");
-    p.append("Categoría: " + data.meals[0].strCategory);
+    p.append("Categoría: " + data.meals[iterator].strCategory);
     //se agregan las clases al parrafo
     p.classList.add("card-text");
     //se agrega el parrafo como hijo del div_body
@@ -325,20 +227,20 @@ function creaTarjetaReceta(data) {
         //se genera la imagen
         //se crea un elemento imagen
         let img_modal = document.createElement("img");
-        img_modal.src = data.meals[0].strMealThumb;
+        img_modal.src = data.meals[iterator].strMealThumb;
 
         //se genera el titulo
         let h2_modal = document.createElement("h2");
-        h2_modal.append(data.meals[0].strMeal);
+        h2_modal.append(data.meals[iterator].strMeal);
 
         let arrIngredientes = [];
         arrIngredientes.push("<ul>")
         for (let index = 1; index <= 20; index++) {
 
-            if (data.meals[0]["strIngredient" + index] == "" || data.meals[0]["strIngredient" + index] == null) {
+            if (data.meals[iterator]["strIngredient" + index] == "" || data.meals[iterator]["strIngredient" + index] == null) {
                 continue
             } else {
-                arrIngredientes.push("<li>" + " " + data.meals[0]["strIngredient" + index] + " ( " + data.meals[0]["strMeasure" + index] + " ) </li>");
+                arrIngredientes.push("<li>" + " " + data.meals[iterator]["strIngredient" + index] + " ( " + data.meals[iterator]["strMeasure" + index] + " ) </li>");
             }
 
         }
@@ -347,19 +249,19 @@ function creaTarjetaReceta(data) {
         const modalActive= document.querySelector(".modal-content");
         modalActive.innerHTML = (
             `<div id="image-title-modal">
-            <img src="${data.meals[0].strMealThumb}"/>
+            <img src="${data.meals[iterator].strMealThumb}"/>
             <h1>
-               ${data.meals[0].strMeal} 
+               ${data.meals[iterator].strMeal} 
             </h1>
             <h4>
-                Categoría: ${data.meals[0].strCategory}
+                Categoría: ${data.meals[iterator].strCategory}
             </h4>
             </div>
             <div id="body-info-modal">
                 <h2>Ingredientes</h2>
                 ${arrIngredientes.toString().replaceAll(",", "")}
                 <h2>Instrucciones</h2>
-                <p>${data.meals[0].strInstructions}<p/>
+                <p>${data.meals[iterator].strInstructions}<p/>
             </div>`
         );
         modalActive.style.animationName = ("modal-open");
