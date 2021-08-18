@@ -278,7 +278,6 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
                     document.querySelector("#title_section_lista").innerHTML = " " + data.meals.length + " resultados para \"" + nombre + "\"";
                         for (let index = 0; index < data.meals.length; index++) {
                             /* creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicador) */
-                            console.log("Creando tarjeta receta");
                             console.log(data);
                             fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+(data.meals[index].strMeal)).then((data) => data.json().then(data => data =data))
                             const div_card = creaTarjetaReceta(data
