@@ -207,6 +207,7 @@ img {
     font-size: 1.3rem;
     cursor: pointer;
   }
+  
 }
 
 /* Show menu */
@@ -710,6 +711,9 @@ img {
 
 
 @media (max-width: 575px) {
+  .home__data{
+    text-align: center;
+  }
       #section_titulo {
           #modal {
               .close {
