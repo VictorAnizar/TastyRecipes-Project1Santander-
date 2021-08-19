@@ -34,15 +34,14 @@
     <!--========== HEADER ==========-->
     <header class="l-header" id="header">
         <nav class="nav bd-container">
-            <a href="#" class="nav__logo">Tasty Recipes</a>
-
+            <a href="./index.html" class="nav__logo">Tasty Recipes</a>
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item">
                         <a href="./index.html" class="nav__link active-link">Inicio</a>
                     </li>
                     <li class="nav__item">
-                        <a href="#footer" class="button">Contacto</a>
+                        <a href="#soporte" class="button">Contacto</a>
                     </li>
                     <li>
                         <i class="bx bx-toggle-left change-theme" id="theme-button"></i>
@@ -91,14 +90,15 @@
                     </p>
                     <a href="#" class="button" id="btn_random">Receta Aleatoria <i class="bx bxs-search"></i></a>
                 </div>
-
                 <div id="div_recipe_random" class="receta-sorpresa-container">
                     <div class="receta-sorpresa "></div>
                 </div>
         </section>
-
         <!--========== Template One for Cards ==========-->
-
+        <section id="section_titulo_categorias">
+            <h1>Categorías</h1>
+        </section>
+        <section id="section_categorias" class="templateone section bd-container "></section>
         <section id="section_titulo">
             <h1 id="title_section_lista">Lo más destacado</h1>
             <div id="modal">
@@ -107,37 +107,32 @@
         </section>
         <section class="templateone section bd-container " id="section_lista">
         </section>
-        <section id="section_titulo_categorias">
-            <h1>Categorías</h1>
-        </section>
-        <section id="section_categorias" class="templateone section bd-container "></section>
     </main>
 
     <!--========== FOOTER ==========-->
-    <footer class="footer section" id="#footer">
+    <footer class="footer section" id="soporte">
         <div class="footer__container bd-container bd-grid">
             <div class="footer__content">
                 <h3 class="footer__title">
-                    <a href="index.html" class="footer__logo">Tasty Recipes</a>
+                    <a href="./index.html" class="footer__logo">Tasty Recipes</a>
                 </h3>
                 <p class="footer__description">
-                    Encuentra las mejores <br />
-                    recetas de cocina
+                    ¡Las mejores recetas de cocina <br />
+                    al alcance de un click!
                 </p>
-                <img src="./favicon.png" />
             </div>
 
             <div class="footer__content">
                 <h3 class="footer__title">Navegación</h3>
                 <ul>
                     <li>
-                        <a href="#" class="footer__link"><i class="bx bx-home-alt"></i> Inicio</a>
+                        <a href="index.html" class="footer__link"><i class="bx bx-home-alt"></i> Inicio</a>
                     </li>
                     <li>
-                        <a href="#" class="footer__link"><i class="bx bxs-contact"></i> Contacto</a>
+                        <a href="#soporte" class="footer__link"><i class="bx bxs-contact"></i> Contacto</a>
                     </li>
                     <li>
-                        <a href="#" class="footer__link"><i class="bx bx-restaurant"></i> Destacados</a>
+                        <a href="#random" class="footer__link"><i class="bx bx-restaurant"></i> Destacados</a>
                     </li>
                 </ul>
             </div>
@@ -154,7 +149,7 @@
                                 class="bx bxs-envelope"></i> soporte@tasty.com</a>
                     </li>
                     <li>
-                        <a href="" target="_blank" class="footer__link"><i class='bx bxl-facebook-circle'></i> Tasty
+                        <a href="./index.html" target="_blank" class="footer__link"><i class='bx bxl-facebook-circle'></i> Tasty
                             Recipes </a>
                     </li>
                 </ul>
@@ -170,9 +165,9 @@
         </div>
 
         <p class="footer__copy">
-            Este proyecto fue realizado por el
-            <b><a href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2">Dream Team</a></b>
-            de BEDU.
+            Este proyecto fue realizado por los
+            <b><a href="https://github.com/VictorAnizar/Proyecto-Santander-Fase-2">Semi-Dioses</a></b>
+            de BEDU.  <i class='bx bx-happy-beaming'></i>
         </p>
     </footer>
 </body>
