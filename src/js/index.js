@@ -1,4 +1,4 @@
-import { get } from "jquery";
+import { data, get } from "jquery";
 import "../css/styles.scss";
 
 import './main.js';
@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
                     section_categoraias.append(
                         //se listam las categorias
                         creaTarjetaReceta(data, data.categories[iterator].strCategory,
-                    data.categories[iterator].strCategoryThumb, data.categories[iterator].strCategoryDescription, iterator, "categoria")
+                            data.categories[iterator].strCategoryThumb, data.categories[iterator].strCategoryDescription, iterator, "categoria")
                     );
 
                 }
@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
     logicaBuscador();
     activarEschuchaDark();
 
-    
+
 });
 
 function logicaBuscador() {
@@ -119,7 +119,6 @@ function recetaSorpresa() {
             const recetaSorpresaAleatoria = document.querySelector(".receta-sorpresa");
             recetaSorpresaAleatoria.innerHTML = '';
             recetaSorpresaAleatoria.appendChild(div_card);
-            console.log(div_card);
         });
 
 }
@@ -133,12 +132,22 @@ function getCategories() {
         );
 }
 
-function getSearchByCategory(category){
-    return fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c='+category)
+function getSearchByCategory(category) {
+    return fetch('https://www.themealdb.com/api/json/v1/1/filter.php?c=' + category)
         .then(
             (data) => data.json()
         );
-    
+
+}
+
+function getRecetaSearchByName(name){
+    return fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+(name))
+    .then(
+        (data) =>{
+            return data.json();
+        } 
+            
+    )
 }
 
 //funcion para hacer fetch a la API y regresa recetas aleatorias
@@ -177,11 +186,21 @@ function crearFilaRecetas() {
 }
 
 
+
 //funcion que crea una tarjeta de receta y la agrega al div de recectas 
 //la creacion de esta tarjeta esta basada en las tarjetas que nos ofrece bootstrap
 //las clases que se agregan son las que usa Bootstrap
-function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicador) {
-    
+function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicador, busquedaIndividual = false) {
+    //si es true significa que la tarjeta a crear viene a partir de la busqueda de categorias
+    if (busquedaIndividual != false) {
+        let resp;
+        getRecetaSearchByName(busquedaIndividual)
+        .then(resp => {
+            console.log(resp);
+            data=resp;
+        });
+        
+    }
     //se ccrea el elemento div
     let div_card = document.createElement("div");
     //se le agrega la clase al elemento div creado
@@ -202,6 +221,7 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
     div_card.appendChild(h3);
     //se agrega div_title como hijo de div_body
     if (indicador == "receta") {
+
         let p = document.createElement("p");
         descripcion = "Categoría: " + descripcion;
         p.append(descripcion);
@@ -213,37 +233,37 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
     }
 
     div_card.addEventListener('click', function () {
-        console.log(data);
+
         console.log(indicador);
         if (indicador == "receta") {
+
+            console.log(data);
             let card_modal = document.createElement("div");
             card_modal.classList.add("modal-content");
             document.querySelector("#section_titulo").appendChild(card_modal);
-            console.log("click en card");
-            console.log(div_card);
             //aparece un modal
             modal.style.display = "block";
             document.querySelector(".modal-content").style.display = "grid";
-    
+
             //se genera la imagen
             //se crea un elemento imagen
             let img_modal = document.createElement("img");
             img_modal.src = imagen;
-    
+
             //se genera el titulo
             let h2_modal = document.createElement("h2");
             h2_modal.append(nombre);
             let arrIngredientes = [];
             arrIngredientes.push("<ul>")
-            // for (let index = 1; index <= 20; index++) {
+            for (let index = 1; index <= 20; index++) {
 
-            //     if (data.meals[iterator]["strIngredient" + index] == "" || data.meals[iterator]["strIngredient" + index] == null) {
-            //         continue
-            //     } else {
-            //         arrIngredientes.push("<li>" + " " + data.meals[iterator]["strIngredient" + index] + " ( " + data.meals[iterator]["strMeasure" + index] + " ) </li>");
-            //     }
+                if (data.meals[iterator]["strIngredient" + index] == "" || data.meals[iterator]["strIngredient" + index] == null) {
+                    continue
+                } else {
+                    arrIngredientes.push("<li>" + " " + data.meals[iterator]["strIngredient" + index] + " ( " + data.meals[iterator]["strMeasure" + index] + " ) </li>");
+                }
 
-            // }
+            }
             arrIngredientes.push("</ul>")
             // arrIngredientes=arrIngredientes.join();
             const modalActive = document.querySelector(".modal-content");
@@ -269,25 +289,24 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
             modalActive.style.backgroundRepeat = 'no-repeat';
             modalActive.style.backgroundPosition = 'bottom';
         } else {
-            document.querySelector("#section_lista").innerHTML="";
+            document.querySelector("#section_lista").innerHTML = "";
             console.log("No es receta, es categoria");
             getSearchByCategory(nombre)
-            .then(
-                data => {
-                    console.log("Elegido "+ nombre);
-                    document.querySelector("#title_section_lista").innerHTML = " " + data.meals.length + " resultados para \"" + nombre + "\"";
+                .then(
+                    data => {
+                        console.log("Elegido " + nombre);
+                        console.log(data);
+                        document.querySelector("#title_section_lista").innerHTML = " " + data.meals.length + " resultados para \"" + nombre + "\"";
                         for (let index = 0; index < data.meals.length; index++) {
-                            /* creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicador) */
-                            console.log(data);
-                            fetch('https://www.themealdb.com/api/json/v1/1/search.php?s='+(data.meals[index].strMeal)).then((data) => data.json().then(data => data =data))
-                            const div_card = creaTarjetaReceta(data
-                                ,data.meals[index].strMeal,
-                                data.meals[index].strMealThumb, nombre, 0, "receta");
-                                
+                            //se esta mandando el data de las categorias
+
+                            const div_card = creaTarjetaReceta(data, data.meals[index].strMeal,
+                                data.meals[index].strMealThumb, nombre, 0, "receta", data.meals[index].strMeal);
+
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
-                }
-            )
+                    }
+                )
         }
     });
     return div_card;
