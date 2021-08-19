@@ -60,23 +60,28 @@ function logicaBuscador() {
         if (search_input.value != "") {
             console.log(search_input.value);
 
-            setTimeout(() => {
-                document.querySelector("#btn_random").style.display = "none";
-                document.querySelector("#random").style.display = "none";
-            }, 300);
-            document.querySelector("#btn_random").classList.add("closed");
-            document.querySelector("#div_recipe_random").classList.add("closed");
+            // setTimeout(() => {
+            //     document.querySelector("#btn_random").style.display = "none";
+            // document.querySelector("#random").style.display = "none";
+            // document.querySelector("#section_titulo_categorias").style.display = "none";
+            // document.querySelector("#section_categorias").style.display = "none";
+            // }, 300);
+            // document.querySelector("#btn_random").classList.add("closed");
+            // document.querySelector("#div_recipe_random").classList.add("closed");
+            
 
 
             getRecetaSearch(search_input.value)
                 .then(
                     data => {
                         document.querySelector("#title_section_lista").innerHTML = " " + data.meals.length + " resultados para \"" + search_input.value + "\"";
+                        document.querySelector("#section_lista").innerHTML='';
                         for (let index = 0; index < data.meals.length; index++) {
                             const div_card = creaTarjetaReceta(data, data.meals[index].strMeal,
                                 data.meals[index].strMealThumb, data.meals[index].strCategory, index, "receta");
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
+                        location.href ="#title_section_lista";
                     }
                 )
                 .catch(
@@ -302,7 +307,7 @@ function creaTarjetaReceta(data, nombre, imagen, descripcion, iterator, indicado
 
                             const div_card = creaTarjetaReceta(data, data.meals[index].strMeal,
                                 data.meals[index].strMealThumb, nombre, 0, "receta", data.meals[index].strMeal);
-
+                                location.href ="#title_section_lista";
                             document.querySelector("#section_lista").appendChild(div_card);
                         }
                     }
